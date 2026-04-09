@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { Menu, X } from "lucide-react";
 import { uiStore, useUIStore } from "@/lib/store/ui-store";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const links = [
   { name: "Home", href: "/" },
@@ -28,16 +30,16 @@ export function Header() {
     const onScroll = () => {
       if (window.scrollY > 50) {
         gsap.to(headerRef.current, {
-          backgroundColor: "rgba(0, 0, 0, 0.7)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          boxShadow: "0 10px 40px -10px rgba(0,0,0,0.5)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
           duration: 0.3,
           ease: "power2.out",
         });
       } else {
         gsap.to(headerRef.current, {
-          backgroundColor: "transparent",
-          backdropFilter: "blur(0px)",
+          backgroundColor: "rgba(0, 0, 0, 0.2)",
+          boxShadow: "0 0px 0px 0px rgba(0,0,0,0)",
           borderBottom: "1px solid rgba(255, 255, 255, 0)",
           duration: 0.3,
           ease: "power2.out",
@@ -52,25 +54,26 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 pointer-events-auto"
+      className="fixed top-0 left-0 right-0 z-50 pointer-events-auto backdrop-blur-xl bg-black/40 shadow-xl shadow-black/80 border-b border-white/5"
     >
-      <div className="container mx-auto px-6 lg:px-12 h-24 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* LOGO */}
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tight text-white z-50 flex items-center gap-2 group"
+          className="flex items-center gap-2.5 z-50 tracking-tight"
           onClick={() => uiStore.setMenuOpen(false)}
         >
-          <span className="bg-white/10 p-2 rounded-xl group-hover:bg-white/20 transition-colors duration-200">
-            {/* Custom abstract shape for a premium feel */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 22H22L12 2Z" fill="white" className="group-hover:fill-emerald-400 transition-colors duration-300"/>
-              <path d="M12 8L6 19H18L12 8Z" fill="black" />
-            </svg>
-          </span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
-            tasheelmoralacademy.in
-          </span>
+          <div className="relative w-12 h-12 rounded shrink-0">
+            <Image src="/favicon.ico" alt="Logo" fill sizes="48px" className="object-contain" />
+          </div>
+          <div className="flex flex-col leading-none justify-center">
+            <span className="text-lg font-bold text-white uppercase tracking-wide">
+              THASHEEL MORAL
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-semibold mt-0.5">
+              ACADEMY
+            </span>
+          </div>
         </Link>
 
         {/* DESKTOP NAV */}
@@ -81,7 +84,7 @@ export function Header() {
               <Link
                 href={link.href}
                 key={link.name}
-                className="relative text-sm font-medium text-white/80 hover:text-white transition-colors duration-200 group py-2"
+                className="relative text-sm font-medium text-white/80 hover:text-white transition-all duration-200 group py-2 active:scale-[0.97]"
                 ref={(el) => {
                   linksRef.current[i] = el;
                 }}
@@ -96,9 +99,9 @@ export function Header() {
             );
           })}
 
-          <button className="ml-4 px-6 py-2.5 rounded-full bg-white text-black font-medium text-sm hover:bg-emerald-400 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-transform">
+          <Button className="ml-4 rounded-full bg-white text-black hover:bg-emerald-400 hover:text-white cursor-pointer px-6 active:scale-[0.97] transition-all duration-150 ease-out">
             Enroll Now
-          </button>
+          </Button>
         </nav>
 
         {/* MOBILE TOGGLE */}
@@ -144,12 +147,12 @@ export function Header() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.4, duration: 0.4 }}
             >
-              <button 
-                className="mt-8 px-8 py-4 rounded-full bg-emerald-500 text-white font-medium text-xl w-64 hover:bg-emerald-400 active:scale-95 transition-all duration-200"
+              <Button 
+                className="mt-8 rounded-full bg-emerald-500 text-white font-medium hover:bg-emerald-400 cursor-pointer text-lg w-64 h-14 active:scale-[0.97] transition-all duration-150 ease-out"
                 onClick={() => uiStore.setMenuOpen(false)}
               >
                 Enroll Now
-              </button>
+              </Button>
             </motion.div>
           </motion.nav>
         )}
