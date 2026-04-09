@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "skills": {
+    "awwwards-animations": {
+      "source": "devmartinese/awwwards-animations-skill",
+      "sourceType": "github",
+      "computedHash": "10574282bd24f42072059efa58cfce6ff3a80347505eb191af55544426fe4c3a"
+    },
+    "code-review-graph": {
+      "source": "aradotso/trending-skills",
+      "sourceType": "github",
+      "computedHash": "2ef5ff05a35e0769608daf223242803e4a908fca110ff967595a0471cb38daf5"
+    },
+    "emil-design-eng": {
+      "source": "emilkowalski/skill",
+      "sourceType": "github",
+      "computedHash": "ac3fc5b4e206488ffc408a2806f829bb2e5eaf518fded09be34790685c2b3a0d"
+    },
+    "framer-motion-animator": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "gsap-animation": {
+      "source": "notedit/happy-skills",
+      "sourceType": "github",
+      "computedHash": "72f5f5de7e5d6e17c880de70604999501b6bf50b3bb646257e546a7ad14b7c6c"
+    },
+    "ui-animation": {
+      "source": "mblode/agent-skills",
+      "sourceType": "github",
+      "computedHash": "f918842977d31fadccb206bd80163091b57294690cbb7351e91cf9c681de2310"
+    }
+  }
+}
