@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-black text-white selection:bg-emerald-500/30" suppressHydrationWarning>
         <Header />
         <MobileNav />
-        <main className="flex-1 flex flex-col">
+        <main className="flex-1 flex flex-col mt-[80px] md:mt-0">
           {children}
         </main>
       </body>

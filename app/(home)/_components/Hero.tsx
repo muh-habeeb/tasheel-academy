@@ -31,7 +31,7 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-[100dvh] lg:h-screen w-full flex items-center justify-center overflow-hidden bg-black"
     >
       {/* Background Image with optimized Next/Image */}
       <div
@@ -95,7 +95,7 @@ export function Hero() {
       </div>
 
       {/* Content wrapper */}
-      <div className="relative z-2 container mx-auto px-6 lg:px-12 pt-24 h-full flex flex-col justify-center pointer-events-none">
+      <div className="relative z-2 container mx-auto px-6 lg:px-12 pt-16 pb-20 lg:py-0 w-full min-h-[100dvh] lg:h-full flex flex-col justify-center pointer-events-none">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* Left Side text content */}
@@ -163,11 +163,11 @@ export function Hero() {
               transition={{ duration: 1, delay: 2.2, ease: [0.23, 1, 0.32, 1] }}
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             >
-              <Button className="px-8 py-6 rounded-full bg-emerald-500 text-white font-medium hover:bg-emerald-400 cursor-pointer shadow-[0_0_40px_rgba(52,211,153,0.3)] hover:shadow-[0_0_60px_rgba(52,211,153,0.5)] text-base active:scale-[0.97] transition-all duration-150 ease-out">
+              <Button className="px-8 py-6 rounded-full bg-emerald-500 text-white font-medium hover:bg-emerald-400 pointer-events-auto cursor-pointer shadow-[0_0_40px_rgba(52,211,153,0.3)] hover:shadow-[0_0_60px_rgba(52,211,153,0.5)] text-base active:scale-[0.97] transition-all duration-150 ease-out">
                 Start Your Journey
               </Button>
 
-              <Button variant="outline" className="px-8 py-6 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 border-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm cursor-pointer text-base active:scale-[0.97] transition-all duration-150 ease-out">
+              <Button variant="outline" className="px-8 py-6 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 border-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm pointer-events-auto cursor-pointer text-base active:scale-[0.97] transition-all duration-150 ease-out">
                 Explore Courses
               </Button>
             </motion.div>

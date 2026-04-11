@@ -95,7 +95,7 @@ const CourseCard = ({ course, index }: { course: ChromaItem; index: number }) =>
       <article
         ref={cardRef}
         onMouseMove={handleCardMove}
-        className="group relative flex flex-col w-[85vw] sm:w-[320px] lg:w-[380px] min-h-[500px] rounded-[24px] overflow-hidden border border-white/10 transition-colors duration-300 cursor-default shadow-2xl"
+        className="group relative flex flex-col w-[85vw]  sm:w-[320px] lg:w-[380px] min-h-[500px] rounded-[24px] overflow-hidden border border-white/10 transition-colors duration-300 cursor-default shadow-2xl"
         style={
           {
             '--card-border': course.borderColor || 'transparent',
@@ -169,34 +169,30 @@ export function Cources() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Get the full horizontal scroll width limit
-      const getScrollAmount = () => {
-        const containerWidth = containerRef.current?.scrollWidth || 0;
-        return -(containerWidth - window.innerWidth + window.innerWidth * 0.1); 
-      };
+      // Force a tiny delay so DOM and images process before calculating widths
+      setTimeout(() => {
+        const getScrollAmount = () => {
+          const containerWidth = containerRef.current?.scrollWidth || window.innerWidth;
+          return -(containerWidth - window.innerWidth + window.innerWidth * 0.1); 
+        };
 
-      const tween = gsap.to(containerRef.current, {
-        x: getScrollAmount,
-        ease: "none"
-      });
+        const tween = gsap.to(containerRef.current, {
+          x: () => getScrollAmount(),
+          ease: "none"
+        });
 
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: () => "+=" + (getScrollAmount() * -1), // Pin duration matches scroll width
-        pin: true,
-        animation: tween,
-        scrub: 1.2, // Smooth scrubbing
-        invalidateOnRefresh: true,
-        // Optional snap behavior to lock onto cards
-        snap: {
-          snapTo: 1 / (courses.length - 1),
-          inertia: false,
-          duration: { min: 0.2, max: 0.6 },
-          delay: 0.1,
-          ease: "power1.inOut"
-        }
-      });
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => "+=" + Math.abs(getScrollAmount()),
+          pin: true,
+          animation: tween,
+          scrub: 1, 
+          invalidateOnRefresh: true,
+        });
+
+        ScrollTrigger.refresh();
+      }, 100);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -220,7 +216,8 @@ export function Cources() {
         <img src="/assets/bgs/banner.png" alt="" className="w-[120px] md:w-[180px] rotate-12 object-contain" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 mb-8 shrink-0">
+      <div className="flex flex-col mt-32 lg:mt-0">
+        <div className="container mx-auto px-6 relative z-10 mb-8 shrink-0">
         <div className="text-center md:text-left max-w-3xl">
           <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-white mb-6">
             Our <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-teal-200">Courses</span>
@@ -244,6 +241,7 @@ export function Cources() {
             <CourseCard key={idx} course={course} index={idx} />
           ))}
         </div>
+      </div>
       </div>
     </section>
     </div>
