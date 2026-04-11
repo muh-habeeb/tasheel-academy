@@ -45,7 +45,7 @@ export default function NotFound() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
-          <h1 className="text-[12rem] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-white/20">
+          <h1 className="text-[12rem] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-linear-to-br from-white to-white/20">
             404
           </h1>
         </motion.div>
@@ -59,7 +59,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-white/60 text-lg max-w-md mx-auto mb-10">
-            The page you are looking for doesn't exist or has been moved. Let's get you back on track.
+            The page you are looking for doesn&apos;t exist or has been moved. Let&apos;s get you back on track.
           </p>
         </motion.div>
 
@@ -72,7 +72,7 @@ export default function NotFound() {
             href="/"
             className="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-full overflow-hidden hover:border-emerald-500/50 transition-colors duration-300 flex items-center gap-3"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/10 to-teal-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+            <div className="absolute inset-0 bg-linear-to-r from-emerald-500/0 via-emerald-500/10 to-teal-500/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
             <span className="relative z-10 font-medium">Return Home</span>
             <svg 
               className="relative z-10 w-4 h-4 transform group-hover:translate-x-1 transition-transform" 

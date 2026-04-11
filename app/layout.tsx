@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+import { MobileNav } from "@/components/MobileNav";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -28,6 +29,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-black text-white selection:bg-emerald-500/30" suppressHydrationWarning>
         <Header />
+        <MobileNav />
         <main className="flex-1 flex flex-col">
           {children}
         </main>
