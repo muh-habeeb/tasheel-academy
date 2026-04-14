@@ -164,8 +164,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
       style={{ borderTop: isFirst ? 'none' : `1px solid ${borderColor}` }}
     >
       <Link
-        className={`flex items-center px-8 h-full relative cursor-pointer uppercase no-underline font-bold text-[3rem] tracking-tight leading-none transition-colors duration-200 ${
-          isActive ? 'text-emerald-400' : ''
+        className={`flex items-center px-8 h-full relative cursor-pointer uppercase no-underline font-display font-bold text-[3rem] tracking-tight leading-none transition-colors duration-200 ${
+          isActive ? 'text-[#C4713A] active' : ''
         }`}
         href={link}
         onMouseEnter={handleMouseEnter}
@@ -174,7 +174,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
         style={{ color: isActive ? undefined : textColor }}
       >
         {isActive && (
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#C4713A]" />
         )}
         {text}
       </Link>
@@ -186,7 +186,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
         <div className="h-full w-fit flex" ref={marqueeInnerRef}>
           {[...Array(repetitions)].map((_, idx) => (
             <div className="marquee-part flex items-center shrink-0" key={`${text}-${idx}`} style={{ color: marqueeTextColor }}>
-              <span className="whitespace-nowrap uppercase font-bold text-[3rem] tracking-tight leading-none px-[2vw]">{text}</span>
+              <span className="font-display whitespace-nowrap uppercase font-bold text-[3rem] tracking-tight leading-none px-[2vw]">{text}</span>
               <span className="text-[2rem] opacity-30">/</span>
             </div>
           ))}

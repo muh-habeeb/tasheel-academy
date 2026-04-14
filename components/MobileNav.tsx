@@ -12,9 +12,9 @@ import FlowingMenu from './FlowingMenu';
 ────────────────────────────────────────────────────────────── */
 
 // Academy theme
-const PANEL_BG    = '#050a08';        // near-black green-tinted
-const COLORS      = ['#065f46', '#0f172a']; // emerald-900 → slate-900 pre-layers
-const ACCENT      = '#10b981';        // emerald-500
+const PANEL_BG    = '#F7F4EF';        // Ivory
+const COLORS      = ['#D4A96A', '#EEE9E0']; // Gold → Deep Ivory pre-layers
+const ACCENT      = '#C4713A';        // Copper
 
 const socialItems = [
   { label: 'WhatsApp', link: 'https://wa.me/' },
@@ -210,31 +210,35 @@ export function MobileNav() {
         style={{ '--sm-accent': ACCENT } as React.CSSProperties}
         suppressHydrationWarning
       >
-        {/* ── Toggle button (top-right) ── */}
-        <button
-          ref={toggleBtnRef}
-          onClick={toggleMenu}
-          type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          className="pointer-events-auto absolute top-7 right-6 z-50 inline-flex items-center gap-1.5 text-white bg-transparent border-0 cursor-pointer font-medium text-sm leading-none"
-        >
-          <span className="relative inline-block h-[1em] overflow-hidden whitespace-nowrap" aria-hidden>
-            <span ref={textInnerRef} className="flex flex-col leading-none">
-              {textLines.map((l, i) => (
-                <span key={i} className="block h-[1em] leading-none">{l}</span>
-              ))}
+        {/* ── Toggle button wrapper (Aligns with Header) ── */}
+        <div className="fixed top-[30px] left-1/2 -translate-x-1/2 w-[85%] z-[999] pointer-events-none">
+          <div className="relative max-w-6xl w-full mx-auto px-6 h-16 flex items-center justify-end">
+            <button
+              ref={toggleBtnRef}
+              onClick={toggleMenu}
+              type="button"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              className="pointer-events-auto relative inline-flex items-center gap-1.5 text-[#1C2544] bg-transparent border-0 cursor-pointer font-sans font-medium text-sm leading-none transition-colors duration-300"
+            >
+            <span className="relative inline-block h-[1em] overflow-hidden whitespace-nowrap" aria-hidden>
+              <span ref={textInnerRef} className="flex flex-col leading-none">
+                {textLines.map((l, i) => (
+                  <span key={i} className="block h-[1em] leading-none">{l}</span>
+                ))}
+              </span>
             </span>
-          </span>
-          <span
-            ref={iconRef}
-            className="relative w-3.5 h-3.5 inline-flex items-center justify-center"
-            aria-hidden
-          >
-            <span ref={plusHRef} className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-sm -translate-x-1/2 -translate-y-1/2" />
-            <span ref={plusVRef} className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-sm -translate-x-1/2 -translate-y-1/2" />
-          </span>
-        </button>
+            <span
+              ref={iconRef}
+              className="relative w-3.5 h-3.5 inline-flex items-center justify-center"
+              aria-hidden
+            >
+              <span ref={plusHRef} className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-sm -translate-x-1/2 -translate-y-1/2" />
+              <span ref={plusVRef} className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-sm -translate-x-1/2 -translate-y-1/2" />
+            </span>
+            </button>
+          </div>
+        </div>
 
         {/* ── Pre-layer colour wipes ── */}
         <div ref={preLayersRef} className="absolute top-0 right-0 bottom-0 w-full lg:w-1/2 pointer-events-none z-5" suppressHydrationWarning>
@@ -256,10 +260,10 @@ export function MobileNav() {
               items={navLinks.map(l => ({ text: l.name, link: l.href }))}
               currentPath={pathname}
               onItemClick={() => { uiStore.setMenuOpen(false); handleClose(); }}
-              textColor="#fff"
+              textColor="#1C2544"
               marqueeBgColor={ACCENT}
               marqueeTextColor="#fff"
-              borderColor="rgba(255,255,255,0.08)"
+              borderColor="rgba(43,58,107,0.08)"
               speed={12}
             />
           </div>
@@ -268,8 +272,8 @@ export function MobileNav() {
             <a
               href="#contact"
               onClick={() => { uiStore.setMenuOpen(false); handleClose(); }}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-white text-base active:scale-95 transition-transform duration-150"
-              style={{ background: `linear-gradient(135deg, #10b981, #14b8a6)` }}
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-sans font-semibold text-white text-base active:scale-95 transition-all duration-200"
+              style={{ background: `linear-gradient(135deg, ${ACCENT}, #D4A96A)` }}
             >
               Book a Free Trial
             </a>
@@ -281,7 +285,7 @@ export function MobileNav() {
 
             {/* Socials */}
             <div className="sm-socials flex flex-col gap-3">
-              <h3 className="sm-socials-title text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT }}>
+              <h3 className="sm-socials-title text-xs font-sans font-semibold uppercase tracking-widest" style={{ color: ACCENT }}>
                 Follow Us
               </h3>
               <ul className="sm-socials-list list-none m-0 p-0 flex flex-row gap-5 flex-wrap">
@@ -291,7 +295,7 @@ export function MobileNav() {
                       href={s.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="sm-socials-link text-base font-medium text-white/70 hover:text-emerald-300 no-underline transition-colors duration-200"
+                      className="sm-socials-link text-base font-sans font-medium text-[#3D4F7C] hover:text-[#C4713A] no-underline transition-colors duration-200"
                     >
                       {s.label}
                     </a>

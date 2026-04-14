@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CalendarCheck, GraduationCap, Users, Globe } from "lucide-react";
 import BorderGlow from "@/components/BorderGlow";
+import Link from "next/link";
 
 /* ─────────────────────────────────────────────────────────────
    DATA
@@ -16,9 +17,9 @@ const steps = [
     description:
       "Students select their preferred schedule and teacher to begin Online Islamic Classes in Kerala and worldwide. Learners choose a class suited to their pace — covering Quran Learning, Arabic for Beginners, memorization, and Islamic studies — guided by experienced English-speaking teachers.",
     tag: "Get Started",
-    gradFrom: "#10b981",
-    gradTo: "#14b8a6",
-    icon: <CalendarCheck className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    gradFrom: "#C4713A", // Copper
+    gradTo: "#D4A96A",   // Gold
+    icon: <CalendarCheck className="w-7 h-7 text-[#2B3A6B]" strokeWidth={1.5} />,
   },
   {
     number: "02",
@@ -26,9 +27,9 @@ const steps = [
     description:
       "After booking, students join a guided orientation. Teachers explain how Online Islamic Classes are structured — Quran recitation, Arabic learning, and Islamic moral teachings. Students understand schedules, learning methods, and how Kerala traditions blend with global education.",
     tag: "Onboarding",
-    gradFrom: "#14b8a6",
-    gradTo: "#0ea5e9",
-    icon: <GraduationCap className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    gradFrom: "#D4A96A",
+    gradTo: "#B5622B",
+    icon: <GraduationCap className="w-7 h-7 text-[#2B3A6B]" strokeWidth={1.5} />,
   },
   {
     number: "03",
@@ -36,9 +37,9 @@ const steps = [
     description:
       "Students join individual classes or group batches based on preference. Lessons cover Quran Online, Arabic for Beginners, memorization, and Islamic studies — ensuring personal attention, teamwork, and active engagement for learners in Kerala and worldwide.",
     tag: "Learning",
-    gradFrom: "#059669",
-    gradTo: "#10b981",
-    icon: <Users className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    gradFrom: "#2B3A6B", // Navy
+    gradTo: "#3D4F7C",   // Steel
+    icon: <Users className="w-7 h-7 text-[#2B3A6B]" strokeWidth={1.5} />,
   },
   {
     number: "04",
@@ -46,29 +47,11 @@ const steps = [
     description:
       "Classes are accessible to students in Kerala, India, and across the world. Teachers provide continuous feedback and English-speaking instructors support international learners — ensuring steady improvement in Quran Learning, Arabic, and Islamic studies.",
     tag: "Worldwide",
-    gradFrom: "#0284c7",
-    gradTo: "#6366f1",
-    icon: <Globe className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    gradFrom: "#3D4F7C",
+    gradTo: "#7A8AAD",
+    icon: <Globe className="w-7 h-7 text-[#2B3A6B]" strokeWidth={1.5} />,
   },
 ];
-
-/* ─────────────────────────────────────────────────────────────
-   BACKGROUND OPTIONS
-   Uncomment ONE block to switch the section background image.
-   The mask fades it into the dark section cleanly.
-───────────────────────────────────────────────────────────── */
-
-// ✅ ACTIVE: Option A — Deep ocean ripple (dark, blue-teal, fits the theme)
-const BG_IMAGE = "/assets/bgs/stock/pat-whelen-Rxt252RzQlY-unsplash.jpg";
-const BG_BLEND = "mix-blend-overlay opacity-[0.08]";
-
-// Option B — Dark chrome tide (grayscale shimmer, very moody)
-// const BG_IMAGE = "/assets/bgs/stock/lumilist-dark-chrome-tide.jpg";
-// const BG_BLEND = "opacity-[0.12]";
-
-// Option C — Open book / warm light (masked radially, classic)
-// const BG_IMAGE = "/assets/bgs/stock/pexels-pixabay-161153.jpg";
-// const BG_BLEND = " opacity-[1.00]";
 
 /* ─────────────────────────────────────────────────────────────
    SVG BACKGROUND DECORATION
@@ -78,15 +61,15 @@ function SvgDecor() {
     <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden>
       <defs>
         <radialGradient id="hw-orb1" cx="20%" cy="10%" r="40%">
-          <stop offset="0%" stopColor="#10b981" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+          <stop offset="0%" stopColor="#C4713A" stopOpacity="0.10" />
+          <stop offset="100%" stopColor="#C4713A" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="hw-orb2" cx="80%" cy="90%" r="40%">
-          <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.12" />
-          <stop offset="100%" stopColor="#14b8a6" stopOpacity="0" />
+          <stop offset="0%" stopColor="#2B3A6B" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#2B3A6B" stopOpacity="0" />
         </radialGradient>
-        <pattern id="hw-dots" width="36" height="36" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.035)" />
+        <pattern id="hw-dots" width="32" height="32" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1" fill="rgba(43,58,107,0.06)" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#hw-dots)" />
@@ -97,7 +80,7 @@ function SvgDecor() {
         <animate attributeName="rx" values="28%;34%;28%" dur="9s" begin="2s" repeatCount="indefinite" />
       </ellipse>
       {/* Vertical dashed connector */}
-      <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(16,185,129,0.05)" strokeWidth="1" strokeDasharray="5 12">
+      <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(43,58,107,0.15)" strokeWidth="1" strokeDasharray="5 12">
         <animate attributeName="stroke-dashoffset" from="0" to="34" dur="2.5s" repeatCount="indefinite" />
       </line>
     </svg>
@@ -124,23 +107,22 @@ function StackCard({ step, index }: { step: typeof steps[0]; index: number }) {
       onMouseMove={handleMouseMove}
       className="sticky group overflow-hidden rounded-2xl md:rounded-3xl"
       style={{
-        top: `${88 + index * 52}px`,   // cascading top offset — cards stack visually
+        top: `${88 + index * 52}px`,
         zIndex: 10 + index,
       }}
     >
       {/* Card shell */}
       <div
-        className="relative flex flex-col md:flex-row min-h-[260px] md:min-h-[220px]"
+        className="relative flex flex-col md:flex-row min-h-[260px] md:min-h-[220px] bg-white border border-[#2B3A6B]/10"
         style={{
-          background: `linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(5,10,8,0.92) 100%)`,
-          boxShadow: `0 30px 100px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.04)`,
+          boxShadow: `0 20px 40px -10px rgba(43,58,107,0.06)`,
         }}
       >
         {/* Mouse spotlight */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-20 rounded-2xl md:rounded-3xl overflow-hidden"
           style={{
-            background: `radial-gradient(circle 350px at var(--mx,50%) var(--my,50%), ${step.gradFrom}22, transparent 70%)`,
+            background: `radial-gradient(circle 350px at var(--mx,50%) var(--my,50%), ${step.gradFrom}1A, transparent 70%)`,
           }}
         />
 
@@ -148,16 +130,16 @@ function StackCard({ step, index }: { step: typeof steps[0]; index: number }) {
         <div
           className="relative shrink-0 flex items-center justify-center p-8 md:p-0 md:w-[200px] lg:w-[240px]"
           style={{
-            background: `linear-gradient(145deg, ${step.gradFrom}28, ${step.gradTo}10)`,
-            borderRight: `1px solid rgba(255,255,255,0.05)`,
+            background: `linear-gradient(145deg, ${step.gradFrom}1A, ${step.gradTo}08)`,
+            borderRight: `1px solid rgba(43,58,107,0.08)`,
           }}
         >
           {/* Big number watermark */}
           <span
-            className="absolute text-[7rem] md:text-[8rem] font-black tabular-nums leading-none select-none pointer-events-none"
+            className="absolute text-[7rem] md:text-[8rem] font-sans font-black tabular-nums leading-none select-none pointer-events-none"
             style={{
               color: "transparent",
-              WebkitTextStroke: `1px ${step.gradFrom}30`,
+              WebkitTextStroke: `1px ${step.gradFrom}40`,
               top: "50%",
               left: "50%",
               transform: "translate(-50%,-50%)",
@@ -168,7 +150,6 @@ function StackCard({ step, index }: { step: typeof steps[0]; index: number }) {
           {/* Icon */}
           <div
             className="relative z-10 flex items-center justify-center w-14 h-14 md:w-16 md:h-16"
-            style={{ filter: `drop-shadow(0 0 14px ${step.gradFrom}90)` }}
           >
             {step.icon}
           </div>
@@ -178,7 +159,7 @@ function StackCard({ step, index }: { step: typeof steps[0]; index: number }) {
         <div className="flex-1 flex flex-col justify-center gap-3 p-6 md:p-8 lg:p-10">
           <div className="flex items-center gap-3">
             <span
-              className="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full border"
+              className="text-xs font-sans font-semibold uppercase tracking-[0.2em] px-3 py-1 rounded-full border"
               style={{
                 color: step.gradFrom,
                 borderColor: `${step.gradFrom}40`,
@@ -199,18 +180,18 @@ function StackCard({ step, index }: { step: typeof steps[0]; index: number }) {
                     background:
                       i === index
                         ? `linear-gradient(90deg, ${step.gradFrom}, ${step.gradTo})`
-                        : "rgba(255,255,255,0.12)",
+                        : "rgba(43,58,107,0.12)",
                   }}
                 />
               ))}
             </div>
           </div>
 
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight">
+          <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-[#1C2544] leading-tight">
             {step.title}
           </h3>
 
-          <p className="text-white/55 text-sm md:text-base leading-relaxed max-w-2xl">
+          <p className="font-body text-[#3D4F7C] text-sm md:text-base leading-relaxed max-w-2xl font-light">
             {step.description}
           </p>
         </div>
@@ -219,7 +200,7 @@ function StackCard({ step, index }: { step: typeof steps[0]; index: number }) {
         <div
           className="absolute bottom-0 left-0 right-0 h-px"
           style={{
-            background: `linear-gradient(90deg, transparent, ${step.gradFrom}50, ${step.gradTo}50, transparent)`,
+            background: `linear-gradient(90deg, transparent, ${step.gradFrom}30, ${step.gradTo}30, transparent)`,
           }}
         />
       </div>
@@ -261,57 +242,47 @@ export function HowItWorks() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#040404] overflow-hidden"
+      className="relative w-full bg-[#EEE9E0] overflow-hidden"
       suppressHydrationWarning
     >
       {/* Background decorations */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Background image — switch by changing BG_IMAGE / BG_BLEND constants above */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={BG_IMAGE}
-          alt=""
-          aria-hidden
-          className={`absolute inset-0 w-full h-full object-cover object-center ${BG_BLEND}`}
-          style={{
-            // WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 40%, black 35%, transparent 100%)",
-            // maskImage: "radial-gradient(ellipse 75% 65% at 50% 40%, black 35%, transparent 100%)",
-          }}
-        />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-emerald-700/8 blur-[180px]" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[400px] rounded-full bg-teal-600/6 blur-[150px]" />
+        {/* Soft glow orbs (light mode) */}
+        <div className="absolute top-0 left-0 w-[600px] h-[400px] rounded-full bg-[#C4713A]/6 blur-[160px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[350px] rounded-full bg-[#2B3A6B]/5 blur-[140px] pointer-events-none" />
         <SvgDecor />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-24 md:pt-32">
         {/* Heading */}
         <div ref={headRef} className="text-center mb-16 md:mb-20">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400 border border-emerald-500/25 bg-emerald-500/5 px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-flex items-center gap-2 text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#C4713A] border border-[#C4713A]/30 bg-[#C4713A]/8 px-4 py-2 rounded-full mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C4713A] animate-pulse" />
             Our Process
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-5">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C2544] tracking-tight leading-[1.1] mb-5">
             How Classes Work at{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 via-teal-300 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4713A] via-[#D4A96A] to-[#C4713A]">
               TasHeel
             </span>
           </h2>
-          <p className="text-white/45 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+          <p className="font-body text-[#3D4F7C] text-base md:text-lg max-w-lg mx-auto leading-relaxed">
             A clear journey from your first trial to mastery — accessible from anywhere in the world.
           </p>
         </div>
 
         {/* Stacking cards */}
-        <div className="flex flex-col gap-4 pb-[40vh]">
+        <div className="flex flex-col gap-4 pb-[20vh] md:pb-[30vh]">
           {steps.map((step, i) => (
             <StackCard key={i} step={step} index={i} />
           ))}
+
           {/* CTA — sits after the stacking region */}
-          <div ref={ctaRef} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pb-28 md:pb-36 text-center">
+          <div ref={ctaRef} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-16 text-center">
             <BorderGlow
-              backgroundColor="#050a08"
-              glowColor="160 80 60"
-              colors={["#10b981", "#14b8a6", "#0ea5e9"]}
+              backgroundColor="#EEE9E0"
+              glowColor="196 113 58"
+              colors={["#C4713A", "#D4A96A", "#2B3A6B"]}
               borderRadius={9999}
               glowRadius={48}
               glowIntensity={1.2}
@@ -320,35 +291,17 @@ export function HowItWorks() {
               animated
               className="inline-grid"
             >
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base text-white active:scale-95 transition-transform duration-150"
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-sans font-semibold text-base text-white bg-[#C4713A] hover:bg-[#B5622B] active:scale-95 transition-all duration-200"
               >
-                <CalendarCheck className="w-5 h-5" strokeWidth={1.5} />
+                <CalendarCheck className="w-5 h-5 text-white" strokeWidth={1.5} />
                 Book a Free Trial Class
-              </a>
+              </Link  >
             </BorderGlow>
           </div>
         </div>
       </div>
-
-
-      {/* Shape Divider — bottom edge transition */}
-      {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none z-20">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-full h-[60px] md:h-[90px]"
-        >
-          <path
-            d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-            fill="#040404"
-            fillOpacity="1"
-          />
-        </svg>
-      </div> */}
     </section>
   );
 }

@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { MobileNav } from "@/components/MobileNav";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { Preloader } from "@/components/Preloader";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { Cormorant_Garamond, Source_Serif_4, DM_Sans, Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '600', '700'], variable: '--font-cormorant' });
+const sourceSerif = Source_Serif_4({ subsets: ['latin'], weight: ['300', '400'], variable: '--font-source-serif' });
+const dmSans = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-dm-sans' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: "Tasheel Moral Academy",
@@ -18,11 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full antialiased text-inter", "font-sans", geist.variable)} suppressHydrationWarning>
+    <html lang="en" className={cn("h-full antialiased", inter.variable, dmSans.variable, cormorant.variable, sourceSerif.variable)} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
         <title>Online Islamic Classes in Kerala | Online Quran Learning</title>
         <meta name="description" content="TasHeel Moral Academy offers online Islamic classes in Kerala with Quran learning &amp; Arabic lessons, accessible worldwide with expert teachers." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
@@ -50,17 +54,16 @@ export default function RootLayout({
         <meta name="twitter:data1" content="Tasheel@admin.in" />
         <meta name="twitter:label2" content="Time to read" />
         <meta name="twitter:data2" content="9 minutes" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body className="min-h-full flex flex-col bg-black text-white selection:bg-emerald-500/30" suppressHydrationWarning>
-        <Header />
-        <MobileNav />
-        <main className="flex-1 flex flex-col mt-[80px] md:mt-0">
-          {children}
-        </main>
+      <body className="min-h-full flex flex-col bg-[#F7F4EF] text-[#1C2544] selection:bg-[#C4713A]/30 font-sans" suppressHydrationWarning>
+        <SmoothScroll>
+          <Preloader />
+          <Header />
+          <MobileNav />
+          <main className="flex-1 flex flex-col mt-[80px] md:mt-0 relative" style={{ position: 'relative' }}>
+            {children}
+          </main>
+        </SmoothScroll>
       </body>
     </html>
   );

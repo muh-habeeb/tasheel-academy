@@ -14,30 +14,37 @@ export function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        imageRef.current,
-        { clipPath: "inset(100% 0% 0% 0%)", scale: 1.1 },
-        {
+      gsap.set(imageRef.current, { clipPath: "inset(100% 0% 0% 0%)", scale: 1.1 });
+    }, containerRef);
+
+    const playAnim = () => {
+      ctx.add(() => {
+        gsap.to(imageRef.current, {
           clipPath: "inset(0% 0% 0% 0%)",
           scale: 1,
           duration: 1.8,
           ease: "power4.inOut",
-        }
-      );
-    }, containerRef);
+        });
+      });
+    };
 
-    return () => ctx.revert();
+    window.addEventListener("preloader-complete", playAnim);
+
+    return () => {
+      window.removeEventListener("preloader-complete", playAnim);
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-dvh lg:h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-dvh lg:h-screen w-full flex items-center justify-center overflow-hidden bg-[#F7F4EF]"
     >
       {/* Background Image with optimized Next/Image */}
       <div
         ref={imageRef}
-        className="absolute inset-0 z-0 will-change-transform bg-black"
+        className="absolute inset-0 z-0 will-change-transform bg-[#F7F4EF]"
       >
         <Image
           src="/assets/bgs/stock/ashkan-forouzani-7blIFp0kFP4-unsplash.jpg"
@@ -47,9 +54,9 @@ export function Hero() {
           className="object-cover"
           sizes="100vw"
         />
-        {/* Dark elegant overlay */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-black/50 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Warm elegant overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F7F4EF]/90 via-[#F7F4EF]/60 to-transparent" />
+        <div className="absolute inset-0 bg-[#F7F4EF]/30" />
 
         {/* Full section Noise Texture — custom specular lighting */}
         <div
@@ -67,7 +74,7 @@ export function Hero() {
           style={{ height: "100%", width: "100%" }}
           horizontalBeamOffset={0.0}
           verticalBeamOffset={-0.50}
-          color="#00d492"
+          color="#C4713A"
           horizontalSizing={2}
           verticalSizing={12}
           wispDensity={2}
@@ -94,9 +101,9 @@ export function Hero() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.8, ease: [0.23, 1, 0.32, 1] }}
-              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md shadow-sm"
+              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-[#2B3A6B]/10 bg-[#F7F4EF]/50 backdrop-blur-md shadow-sm"
             >
-              <span className="text-sm font-medium tracking-wide text-white uppercase letter-spacing-2">
+              <span className="text-sm font-sans font-medium tracking-wide text-[#3D4F7C] uppercase letter-spacing-2">
                 Admissions Open For 2026
               </span>
             </motion.div>
@@ -108,7 +115,7 @@ export function Hero() {
                   initial={{ y: "100%" }}
                   animate={{ y: "0%" }}
                   transition={{ duration: 1.2, delay: 1.0, ease: [0.77, 0, 0.175, 1] }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]"
+                  className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-[#1C2544] tracking-tight leading-[1.1]"
                 >
                   Learn Quran.
                 </motion.h1>
@@ -118,7 +125,7 @@ export function Hero() {
                   initial={{ y: "100%" }}
                   animate={{ y: "0%" }}
                   transition={{ duration: 1.2, delay: 1.3, ease: [0.77, 0, 0.175, 1] }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-teal-200 tracking-tight leading-[1.1] pb-2"
+                  className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C4713A] via-[#D4A96A] to-[#C4713A] tracking-tight leading-[1.1] pb-2"
                 >
                   Understand Arabic.
                 </motion.h1>
@@ -128,7 +135,7 @@ export function Hero() {
                   initial={{ y: "100%" }}
                   animate={{ y: "0%" }}
                   transition={{ duration: 1.2, delay: 1.6, ease: [0.77, 0, 0.175, 1] }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]"
+                  className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-[#1C2544] tracking-tight leading-[1.1]"
                 >
                   Live Islam.
                 </motion.h1>
@@ -140,9 +147,9 @@ export function Hero() {
                 initial={{ y: "100%" }}
                 animate={{ y: "0%" }}
                 transition={{ duration: 1.2, delay: 1.9, ease: [0.77, 0, 0.175, 1] }}
-                className="text-lg md:text-xl text-white/70 font-light leading-relaxed py-2"
+                className="font-body text-lg md:text-xl text-[#3D4F7C] font-light leading-relaxed py-2"
               >
-                We go beyond basic Quran reading. Our students learn the Quran  <span className="text-white/90"> along with important life lessons, daily duas, and Islamic values </span> that can be applied in everyday life.
+                We go beyond basic Quran reading. Our students learn the Quran  <span className="text-[#1C2544]"> along with important life lessons, daily duas, and Islamic values </span> that can be applied in everyday life.
               </motion.p>
             </div>
 
@@ -155,23 +162,24 @@ export function Hero() {
             >
               <BorderGlow
                 edgeSensitivity={10}
-                glowColor="40 80 80"
-                backgroundColor="#060010"
+                glowColor="196 113 58"
+                backgroundColor="#F7F4EF"
                 borderRadius={50}
                 glowRadius={37}
                 glowIntensity={1.6}
                 coneSpread={7}
                 animated
-                colors={['#c084fc', '#f472b6', '#38bdf8']}
+                colors={['#C4713A', '#D4A96A', '#C4713A']}
               >
                 <Button
-                  className="w-full h-full sm:w-auto px-8 py-4 rounded-full text-white font-bold text-base  transition-all duration-200 ease-out cursor-pointer border-0 bg-transparent"
+                  className="w-full h-full sm:w-auto px-8 py-4 rounded-full text-white font-sans font-bold text-base transition-all duration-200 ease-out cursor-pointer border-0 bg-transparent flex items-center justify-center pointer-events-none"
+                  style={{ color: '#1C2544' }}
                 >
                   Start Your Journey
                 </Button>
               </BorderGlow>
 
-              <Button variant="outline" className="px-8 py-6 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 border-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm cursor-pointer text-base active:scale-[0.97] transition-all duration-150 ease-out">
+              <Button variant="outline" className="px-8 py-6 rounded-full bg-white/50 text-[#2B3A6B] font-sans font-medium hover:bg-white/80 border-[#2B3A6B]/20 hover:border-[#2B3A6B]/40 hover:text-[#1C2544] backdrop-blur-sm cursor-pointer text-base active:scale-[0.97] transition-all duration-150 ease-out shadow-sm">
                 Explore Courses
               </Button>
             </motion.div>

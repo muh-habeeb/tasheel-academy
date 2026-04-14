@@ -2,13 +2,21 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@font-face {
+  font-family: 'Qogee';
+  src: url('/fonts/Qogee.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
+  --font-display: 'Qogee', serif;
+  --font-body: var(--font-inter);
+  --font-sans: var(--font-inter);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -47,14 +55,24 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-.text-inter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
 :root {
+  /* TasHeel Light Mode Brand Colors */
+  --bg-primary: #F7F4EF;
+  --bg-secondary: #EEE9E0;
+  --bg-canvas: #F5F2EC;
+  --bg-card: #FFFFFF;
+  --brand-navy: #2B3A6B;
+  --brand-copper: #C4713A;
+  --brand-steel: #3D4F7C;
+  --brand-gold: #D4A96A;
+  --text-primary: #1C2544;
+  --text-body: #3D4F7C;
+  --text-muted: #7A8AAD;
+
+  --overlay-left: linear-gradient(to right, rgba(247,244,239,0.88) 0%, rgba(247,244,239,0.60) 55%, transparent 100%);
+  --overlay-right: linear-gradient(to left, rgba(247,244,239,0.88) 0%, rgba(247,244,239,0.60) 55%, transparent 100%);
+  --overlay-center: linear-gradient(to top, rgba(247,244,239,0.90) 0%, rgba(247,244,239,0.50) 40%, transparent 100%);
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -154,6 +172,6 @@
   background: rgba(52, 211, 153, 0.7);
 }
 
-::-webkit-scrollbar{
+/* ::-webkit-scrollbar{
   width: 0;
-}
+} */

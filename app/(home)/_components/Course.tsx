@@ -19,12 +19,12 @@ export interface ChromaItem {
 
 const courses: ChromaItem[] = [
   {
-    image: "/assets/bgs/quranbatch.webp",
+    image: "/assets/bgs/3d/3dsinle.jpg",
     title: "Individual Quran Batch",
     subtitle: "Individual Quran learning online in Kerala with personalized guidance",
     description: "Our Online Islamic Classes in Kerala and worldwide provide one-to-one Quran learning. Students receive personal guidance in Quran recitation, Quran memorization, and Tajweed. Perfect for learners who want focused attention and progress at their own pace.",
-    borderColor: "#10B981", 
-    gradient: "linear-gradient(145deg, rgba(16, 185, 129, 0.35), rgba(0, 0, 0, 0.9))",
+    borderColor: "#C4713A",
+    gradient: "linear-gradient(145deg, rgba(196, 113, 58, 0.08), rgba(247, 244, 239, 1))",
     handle: "1-on-1",
   },
   {
@@ -32,17 +32,18 @@ const courses: ChromaItem[] = [
     title: "Group Quran Batch",
     subtitle: "Group Quran classes online in Kerala for recitation and memorization",
     description: "In this batch, students learn together in small groups, creating a supportive environment. The program covers Quran recitation, memorization, and pronunciation rules, ensuring both interaction and steady progress in online Quran learning in Kerala and globally.",
-    borderColor: "#34D399",
-    gradient: "linear-gradient(145deg, rgba(52, 211, 153, 0.35), rgba(0, 0, 0, 0.9))",
+    borderColor: "#D4A96A",
+    gradient: "linear-gradient(145deg, rgba(212, 169, 106, 0.1), rgba(247, 244, 239, 1))",
     handle: "Group",
   },
   {
-    image: "/assets/bgs/induvidual madrasa.webp",
+    // image: "/assets/bgs/induvidual madrasa.webp",
+    image: "/assets/bgs/stock/studentwithbooks.jpg",
     title: "Individual Madrasa Batch",
     subtitle: "One-on-one madrasa class – Online Islamic Classes in Kerala",
     description: "This one-to-one batch offers a full Islamic curriculum, including Quran, Arabic, and Islamic Studies. Learners benefit from customized lessons that combine religious knowledge with personal mentorship, making it ideal for dedicated students worldwide.",
-    borderColor: "#059669",
-    gradient: "linear-gradient(145deg, rgba(5, 150, 105, 0.35), rgba(0, 0, 0, 0.9))",
+    borderColor: "#2B3A6B",
+    gradient: "linear-gradient(145deg, rgba(43, 58, 107, 0.08), rgba(247, 244, 239, 1))",
     handle: "1-on-1",
   },
   {
@@ -50,8 +51,8 @@ const courses: ChromaItem[] = [
     title: "Group Madrasa Batch",
     subtitle: "Group madrasa class – Online Islamic Classes in Kerala",
     description: "Students join in groups to study Quran, Arabic, and Islamic Studies together. This batch builds teamwork, discipline, and knowledge, while keeping lessons interactive and engaging. Perfect for families seeking affordable yet quality Islamic education.",
-    borderColor: "#6EE7B7",
-    gradient: "linear-gradient(145deg, rgba(110, 231, 183, 0.35), rgba(0, 0, 0, 0.9))",
+    borderColor: "#7A8AAD",
+    gradient: "linear-gradient(145deg, rgba(122, 138, 173, 0.1), rgba(247, 244, 239, 1))",
     handle: "Group",
   },
   {
@@ -59,8 +60,8 @@ const courses: ChromaItem[] = [
     title: "Weekend Batch",
     subtitle: "Weekend classes – Learning Arabic & Quran online in Kerala",
     description: "Our Weekend Islamic Classes in Kerala and worldwide offer Quran memorization, Learning Arabic for Beginners, and Islamic Studies on Saturdays and Sundays. Perfect for school students, working adults, and busy families who need flexible, convenient learning options.",
-    borderColor: "#A7F3D0",
-    gradient: "linear-gradient(145deg, rgba(167, 243, 208, 0.35), rgba(0, 0, 0, 0.9))",
+    borderColor: "#C4713A",
+    gradient: "linear-gradient(145deg, rgba(196, 113, 58, 0.05), rgba(247, 244, 239, 1))",
     handle: "Sat/Sun",
   },
   {
@@ -68,8 +69,8 @@ const courses: ChromaItem[] = [
     title: "Worldwide Online Batch",
     subtitle: "Worldwide batch – Online Islamic Classes in Kerala & worldwide",
     description: "Our Learning Arabic for Beginners, Quran, and Islamic Studies programs are available globally. Whether you are in India or in any country, TasHeel Moral Academy makes Islamic education accessible from anywhere in the world, with experienced English-speaking teachers.",
-    borderColor: "#047857",
-    gradient: "linear-gradient(145deg, rgba(4, 120, 87, 0.35), rgba(0, 0, 0, 0.9))",
+    borderColor: "#3D4F7C",
+    gradient: "linear-gradient(145deg, rgba(61, 79, 124, 0.08), rgba(247, 244, 239, 1))",
     handle: "Global",
   }
 ];
@@ -95,63 +96,62 @@ const CourseCard = ({ course, index }: { course: ChromaItem; index: number }) =>
       <article
         ref={cardRef}
         onMouseMove={handleCardMove}
-        className="group relative flex flex-col w-[85vw]  sm:w-[320px] lg:w-[380px] min-h-[500px] rounded-[24px] overflow-hidden border border-white/10 transition-colors duration-300 cursor-default shadow-2xl"
+        className="group relative flex flex-col w-[85vw] sm:w-[320px] lg:w-[380px] min-h-[500px] rounded-[24px] overflow-hidden border border-[#2B3A6B]/10 transition-colors duration-300 cursor-default shadow-lg shadow-[#2B3A6B]/5 bg-white"
         style={
           {
             '--card-border': course.borderColor || 'transparent',
-            background: course.gradient || 'linear-gradient(165deg, rgba(255,255,255,0.05), rgba(0,0,0,0.8))',
-            '--spotlight-color': 'rgba(255,255,255,0.3)', // Made the spotlight visually stronger
+            background: course.gradient || 'linear-gradient(165deg, rgba(255,255,255,1), rgba(247,244,239,0.9))',
+            '--spotlight-color': 'rgba(196, 113, 58, 0.08)',
           } as React.CSSProperties
         }
       >
         {/* Glow overlay targeting mouse position */}
         <div
-          className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-20 opacity-0 group-hover:opacity-100 mix-blend-screen"
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-20 opacity-0 group-hover:opacity-100 mix-blend-multiply"
           style={{
             background:
-              'radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%)'
+              'radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%)'
           }}
         />
 
         {/* Card Body */}
-        <div className="relative z-10 flex-none p-[16px] h-[240px] box-border overflow-hidden">
-          <div className="w-full h-full rounded-[14px] overflow-hidden border border-white/5 relative">
-            {/* The image doesn't scale on hover anymore to keep it strictly professional as requested */}
+        <div className="relative z-10 flex-none p-[12px] h-[240px] box-border overflow-hidden">
+          <div className="w-full h-full rounded-[14px] overflow-hidden border border-[#2B3A6B]/5 relative">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src={course.image} 
-              alt={course.title} 
-              loading="lazy" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500" 
+            <img
+              src={course.image}
+              alt={course.title}
+              loading="lazy"
+              className="absolute  p-0 inset-0 w-full h-full object-cover transition-transform duration-500"
             />
           </div>
         </div>
-        
+
         {/* Text Area with hover animation */}
-        <footer className="relative z-10 p-6 pt-2 grow flex flex-col gap-3 text-white font-sans transition-transform duration-300 group-hover:-translate-y-1">
+        <footer className="relative z-10 p-6 pt-2 grow flex flex-col gap-3 text-[#1C2544] font-sans transition-transform duration-300 group-hover:-translate-y-1">
           <div className="flex justify-between items-start gap-2">
-            <h3 className="m-0 text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-white/80 group-hover:from-emerald-300 group-hover:to-teal-100 transition-all duration-300">
+            <h3 className="m-0 text-2xl font-display font-bold text-[#1C2544] group-hover:text-[#C4713A] transition-all duration-300">
               {course.title}
             </h3>
             {course.handle && (
-              <span className="text-xs font-semibold px-3 py-1.5 bg-emerald-500/10 text-emerald-300 rounded-full shrink-0 border border-emerald-500/20">
+              <span className="font-sans text-xs font-semibold px-3 py-1.5 bg-[#C4713A]/10 text-[#C4713A] rounded-full shrink-0 border border-[#C4713A]/20">
                 {course.handle}
               </span>
             )}
           </div>
-          
-          <p className="m-0 text-sm font-medium text-emerald-400">
+
+          <p className="m-0 font-body text-sm font-medium text-[#D4A96A]">
             {course.subtitle}
           </p>
-          
+
           {course.description && (
-            <p className="m-0 text-sm text-white/70 leading-relaxed font-light mt-1">
+            <p className="m-0 font-body text-sm text-[#3D4F7C] leading-relaxed font-light mt-1">
               {course.description}
             </p>
           )}
 
           {course.location && (
-            <div className="mt-auto pt-4 text-xs font-medium text-white/40 uppercase tracking-wider">
+            <div className="mt-auto pt-4 text-xs font-medium text-[#2B3A6B]/40 uppercase tracking-wider font-sans">
               {course.location}
             </div>
           )}
@@ -213,50 +213,52 @@ export function Cources() {
 
   return (
     <div id="courses" className="w-full relative">
-      <section ref={sectionRef} className="relative w-full h-screen bg-[#050505] overflow-hidden border-t border-white/5 flex flex-col justify-center">
-        
-        {/* Big Background Animation / Box Shadow Element */}
-      <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[70%] rounded-full bg-emerald-600/20 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-teal-800/10 blur-[130px] pointer-events-none" />
+      <section ref={sectionRef} className="relative w-full h-screen bg-[#F7F4EF] overflow-hidden border-t border-[#2B3A6B]/5 flex flex-col justify-center ">
+        <div className="mt-28">
 
-      {/* Banner images added to Top-Left and Bottom-Left */}
-      <div className="absolute top-12 -left-8 md:left-12 opacity-15 pointer-events-none blur-[2px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/bgs/banner.png" alt="" className="w-[120px] md:w-[180px] -rotate-12 object-contain" />
-      </div>
-      <div className="absolute bottom-12 -left-8 md:left-12 opacity-15 pointer-events-none blur-[2px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/bgs/banner.png" alt="" className="w-[120px] md:w-[180px] rotate-12 object-contain" />
-      </div>
+          {/* Big Background Animation / Box Shadow Element */}
+          <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[70%] rounded-full bg-[#D4A96A]/20 blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-[#C4713A]/10 blur-[130px] pointer-events-none" />
 
-      <div className="flex flex-col mt-32 lg:mt-0">
-        <div className="container mx-auto px-6 relative z-10 mb-8 shrink-0">
-        <div className="text-center md:text-left max-w-3xl">
-          <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-white mb-6">
-            Our <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-teal-200">Courses</span>
-          </h2>
-          <div className="w-24 h-1 bg-emerald-500/50 rounded-full mb-8 mx-auto md:mx-0"></div>
-          <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed">
-            Discover our comprehensive range of Islamic studies designed to nurture spiritual growth, 
-            focusing on recitation, memorization, and command of the Arabic language.
-          </p>
+          {/* Banner images added to Top-Left and Bottom-Left */}
+          <div className="absolute top-12 -left-8 md:left-12  pointer-events-none ">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/bgs/banner2.png" alt="" className="w-[200px] md:w-[180px] -rotate-12 object-cover" />
+          </div>
+          <div className="absolute bottom-12 -right-8 md:right-12  pointer-events-none ">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/bgs/banner2.png" alt="" className="w-[200px] md:w-[180px] rotate-12 object-cover" />
+          </div>
+
+          <div className="flex flex-col mt-32 lg:mt-0">
+            <div className="container mx-auto px-6 relative z-10 mb-8 shrink-0">
+              <div className="text-center md:text-left max-w-3xl">
+                <h2 className="font-display text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-[#1C2544] mb-6">
+                  Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4713A] via-[#D4A96A] to-[#C4713A]">Courses</span>
+                </h2>
+                <div className="w-24 h-1 bg-[#C4713A]/80 rounded-full mb-8 mx-auto md:mx-0"></div>
+                <p className="font-body text-[#3D4F7C] text-lg md:text-xl font-light leading-relaxed">
+                  Discover our comprehensive range of Islamic studies designed to nurture spiritual growth,
+                  focusing on recitation, memorization, and command of the Arabic language.
+                </p>
+              </div>
+            </div>
+
+            {/* GSAP Horizontal Scroll Area */}
+            <div className="relative w-full z-10 overflow-visible">
+              <div
+                ref={containerRef}
+                // pl-[calc(50vw-x)] positions the first card perfectly in the center initially!
+                className="flex gap-6 w-max pl-[calc(50vw-42.5vw)] sm:pl-[calc(50vw-160px)] lg:pl-[calc(50vw-190px)] pr-[50vw] pb-12 pt-4"
+              >
+                {courses.map((course, idx) => (
+                  <CourseCard key={idx} course={course} index={idx} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* GSAP Horizontal Scroll Area */}
-      <div className="relative w-full z-10 overflow-visible">
-        <div 
-          ref={containerRef} 
-          // pl-[calc(50vw-x)] positions the first card perfectly in the center initially!
-          className="flex gap-6 w-max pl-[calc(50vw-42.5vw)] sm:pl-[calc(50vw-160px)] lg:pl-[calc(50vw-190px)] pr-[50vw] pb-12 pt-4"
-        >
-          {courses.map((course, idx) => (
-            <CourseCard key={idx} course={course} index={idx} />
-          ))}
-        </div>
-      </div>
-      </div>
-    </section>
+      </section>
     </div>
   );
 }

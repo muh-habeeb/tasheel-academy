@@ -373,10 +373,11 @@ export const LaserFlow: React.FC<Props> = ({
       uFalloffStart: { value: falloffStart },
       uFogFallSpeed: { value: fogFallSpeed },
       uColor: { value: new THREE.Vector3(1, 1, 1) },
-      uFade: { value: 0 }
+      uFade: { value: 0 },
     };
     uniformsRef.current = uniforms;
     fadeValueRef.current = 0;
+    hasFadedRef.current = false;
 
     const material = new THREE.RawShaderMaterial({
       vertexShader: VERT,
