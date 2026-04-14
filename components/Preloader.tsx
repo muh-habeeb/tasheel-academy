@@ -72,18 +72,21 @@ export function Preloader() {
   if (complete) return null;
 
   return (
-    <div
+    <div 
       ref={containerRef}
       className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center overflow-hidden"
+      suppressHydrationWarning
     >
-      <div
+      <div 
         ref={slideRef}
         className="absolute inset-0 bg-[#000000] pointer-events-auto"
+        suppressHydrationWarning
       ></div>
-      <div
+      <div 
         ref={textRef}
         // Increased max-width dramatically so the animation is much larger
         className="relative z-10 flex items-center justify-center w-[90vw] md:w-[70vw] max-w-4xl mx-auto"
+        suppressHydrationWarning
       >
         <Lottie
           animationData={loaderAnimation}

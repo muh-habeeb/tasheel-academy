@@ -4,6 +4,7 @@ import { motion, MotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 import { CalendarCheck } from "lucide-react";
 import Link from "next/link";
+import BorderGlow from "@/components/BorderGlow";
 
 interface ScrollyOverlayProps {
   scrollYProgress: MotionValue<number>;
@@ -30,27 +31,27 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
 
   return (
     <div className="absolute inset-0 pointer-events-none h-screen ">
-      
+
       {/* 
         ========================================================
         SECTION 1: CENTERED OPENING
         ========================================================
       */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 flex  flex-col justify-end items-center pb-24 md:pb-32 px-6 overflow-hidden"
         style={{ opacity: o1s, y: y1s }}
       >
-        <div 
+        <div
           className="absolute  inset-x-0 bottom-0 h-[90%] pointer-events-none -z-10"
           style={{ background: "linear-gradient(to top, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.60) 60%, transparent 100%)" }}
         />
-        
+
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto z-10 pointer-events-auto mt-auto">
-          <Image 
-            src="/assets/logo.png" 
-            alt="TasHeel Moral Academy" 
-            width={160} 
-            height={64} 
+          <Image
+            src="/assets/logo.png"
+            alt="TasHeel Moral Academy"
+            width={160}
+            height={64}
             className="mb-8 w-auto h-12 md:h-16 invert brightness-0"
             style={{ width: "auto", height: "auto" }}
           />
@@ -73,6 +74,36 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
           <p className="font-body text-lg md:text-xl text-[#F7F4EF]/80 max-w-2xl font-light leading-relaxed">
             A transformative Islamic education —<br className="hidden md:block" /> from anywhere in the world.
           </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-6 mt-12">
+            <BorderGlow
+              // glowColor="24 54 50" // Copper hue to match the theme
+              // backgroundColor="rgba(28, 37, 68, 0.5)" // Deep Navy with transparency
+              // borderRadius={9999}
+              // glowIntensity={0.8}
+              // animated={true}
+              // className="w-full sm:w-auto"
+              // colors={['#C4713A', '#D4A96A', '#3D4F7C']}
+              edgeSensitivity={14}
+              glowColor="40 80 80"
+              backgroundColor="#120F17"
+              borderRadius={23}
+              glowRadius={51}
+              glowIntensity={1}
+              coneSpread={14}
+              animated
+              colors={['#c084fc', '#f472b6', '#38bdf8']}
+            >
+              <button className="cursor-pointer relative z-10 px-8 py-4 font-sans text-sm md:text-base font-semibold tracking-wide text-[#F7F4EF] w-full text-center hover:text-white transition-colors duration-300">
+                Explore Courses
+              </button>
+            </BorderGlow>
+
+            <button className="cursor-pointer px-8 py-4 rounded-full border border-[#C4713A]/50 text-[#F7F4EF] font-sans text-sm md:text-base font-semibold tracking-wide hover:bg-[#C4713A]/10 hover:border-[#C4713A] transition-all duration-300 w-full sm:w-auto text-center">
+              Enroll Now
+            </button>
+          </div>
         </div>
       </motion.div>
 
@@ -81,11 +112,11 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
         SECTION 2: LEFT ALIGNED
         ========================================================
       */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 flex items-center px-6 md:px-16 overflow-hidden"
         style={{ opacity: o2s, y: y2s }}
       >
-        <div 
+        <div
           className="absolute left-0 inset-y-0 w-full md:w-[60%] pointer-events-none -z-10"
           style={{ background: "linear-gradient(to right, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
         />
@@ -111,11 +142,11 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
         SECTION 3: RIGHT ALIGNED
         ========================================================
       */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 flex items-center justify-end px-6 md:px-16 overflow-hidden"
         style={{ opacity: o3s, y: y3s }}
       >
-        <div 
+        <div
           className="absolute right-0 inset-y-0 w-full md:w-[60%] pointer-events-none -z-10"
           style={{ background: "linear-gradient(to left, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
         />
@@ -141,11 +172,11 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
         SECTION 4: LEFT ALIGNED CTA
         ========================================================
       */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 flex items-center px-6 md:px-16 overflow-hidden"
         style={{ opacity: o4s, y: y4s }}
       >
-        <div 
+        <div
           className="absolute left-0 inset-y-0 w-full md:w-[60%] pointer-events-none -z-10"
           style={{ background: "linear-gradient(to right, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
         />
@@ -167,7 +198,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link 
+            <Link
               href="#contact"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#C4713A] hover:bg-[#B5622B] text-white font-semibold text-base transition-all duration-200 shadow-lg shadow-[#C4713A]/25 hover:shadow-[#C4713A]/40 hover:scale-[1.02] active:scale-[0.98] font-sans"
             >
@@ -175,7 +206,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
               Book a Free Trial
             </Link>
 
-            <Link 
+            <Link
               href="/courses"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-[#F7F4EF]/30 text-[#F7F4EF] hover:border-[#F7F4EF] hover:bg-[#F7F4EF]/10 font-semibold transition-all duration-200 font-sans"
             >

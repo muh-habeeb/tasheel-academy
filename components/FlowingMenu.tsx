@@ -42,8 +42,8 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({
   onItemClick
 }) => {
   return (
-    <div className="w-full h-full overflow-hidden bg-transparent">
-      <nav className="flex flex-col h-full m-0 p-0">
+    <div className="w-full h-full overflow-hidden bg-transparent" suppressHydrationWarning>
+      <nav className="flex flex-col h-full m-0 p-0" suppressHydrationWarning>
         {items.map((item, idx) => (
           <MenuItem
             key={`${item.link}-${idx}`}
@@ -161,10 +161,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
     <div
       className="flex-1 relative overflow-hidden"
       ref={itemRef}
+      suppressHydrationWarning
       style={{ borderTop: isFirst ? 'none' : `1px solid ${borderColor}` }}
     >
       <Link
-        className={`flex items-center px-8 h-full relative cursor-pointer uppercase no-underline font-display font-bold text-[3rem] tracking-tight leading-none transition-colors duration-200 ${
+        className={`flex items-center justify-end md:justify-start px-5 sm:px-8 h-full relative cursor-pointer uppercase no-underline font-display font-bold text-[1.5rem] sm:text-[2.25rem] lg:text-[3rem] tracking-tight leading-none transition-colors duration-200 whitespace-nowrap ${
           isActive ? 'text-[#C4713A] active' : ''
         }`}
         href={link}
@@ -174,20 +175,26 @@ const MenuItem: React.FC<MenuItemProps> = ({
         style={{ color: isActive ? undefined : textColor }}
       >
         {isActive && (
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#C4713A]" />
+          <span className="absolute right-1 md:right-auto md:left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#C4713A]" />
         )}
-        {text}
+        <span className="mr-4 md:mr-0 md:ml-4">{text}</span>
       </Link>
       <div
         className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none translate-y-[101%]"
         ref={marqueeRef}
+        suppressHydrationWarning
         style={{ backgroundColor: marqueeBgColor }}
       >
-        <div className="h-full w-fit flex" ref={marqueeInnerRef}>
+        <div className="h-full w-fit flex" ref={marqueeInnerRef} suppressHydrationWarning>
           {[...Array(repetitions)].map((_, idx) => (
-            <div className="marquee-part flex items-center shrink-0" key={`${text}-${idx}`} style={{ color: marqueeTextColor }}>
-              <span className="font-display whitespace-nowrap uppercase font-bold text-[3rem] tracking-tight leading-none px-[2vw]">{text}</span>
-              <span className="text-[2rem] opacity-30">/</span>
+            <div 
+              key={`${text}-${idx}`} 
+              className="marquee-part flex items-center shrink-0" 
+              suppressHydrationWarning
+              style={{ color: marqueeTextColor }}
+            >
+              <span className="font-display whitespace-nowrap uppercase font-bold text-[1.5rem] sm:text-[2.25rem] lg:text-[3rem] tracking-tight leading-none px-[4vw] sm:px-[2vw]">{text}</span>
+              <span className="text-[1rem] sm:text-[1.5rem] lg:text-[2rem] opacity-30">/</span>
             </div>
           ))}
         </div>

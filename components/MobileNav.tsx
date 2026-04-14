@@ -211,8 +211,8 @@ export function MobileNav() {
         suppressHydrationWarning
       >
         {/* ── Toggle button wrapper (Aligns with Header) ── */}
-        <div className="fixed top-[30px] left-1/2 -translate-x-1/2 w-[85%] z-[999] pointer-events-none">
-          <div className="relative max-w-6xl w-full mx-auto px-6 h-16 flex items-center justify-end">
+        <div className="fixed top-[30px] left-1/2 -translate-x-1/2 w-[85%] z-[999] pointer-events-none" suppressHydrationWarning>
+          <div className="relative max-w-6xl w-full mx-auto px-6 h-16 flex items-center justify-end" suppressHydrationWarning>
             <button
               ref={toggleBtnRef}
               onClick={toggleMenu}
@@ -255,7 +255,7 @@ export function MobileNav() {
           style={{ background: PANEL_BG }}
           suppressHydrationWarning
         >
-          <div className="grow max-h-[65vh]">
+          <div className="grow max-h-[65vh]" suppressHydrationWarning>
             <FlowingMenu
               items={navLinks.map(l => ({ text: l.name, link: l.href }))}
               currentPath={pathname}
@@ -268,7 +268,7 @@ export function MobileNav() {
             />
           </div>
 
-          <div className="px-8 mt-6">
+          <div className="px-8 mt-6 flex justify-end md:justify-start" suppressHydrationWarning>
             <a
               href="#contact"
               onClick={() => { uiStore.setMenuOpen(false); handleClose(); }}
@@ -279,16 +279,16 @@ export function MobileNav() {
             </a>
           </div>
 
-          <div className="px-8 mt-auto pt-4">
+          <div className="px-8 mt-auto pt-4 flex flex-col items-end md:items-start text-right md:text-left" suppressHydrationWarning>
             {/* Divider */}
-            <div className="w-16 h-px mb-6" style={{ background: `${ACCENT}40` }} />
+            <div className="w-16 h-px mb-6" style={{ background: `${ACCENT}40` }} suppressHydrationWarning />
 
             {/* Socials */}
-            <div className="sm-socials flex flex-col gap-3">
+            <div className="sm-socials flex flex-col gap-3" suppressHydrationWarning>
               <h3 className="sm-socials-title text-xs font-sans font-semibold uppercase tracking-widest" style={{ color: ACCENT }}>
                 Follow Us
               </h3>
-              <ul className="sm-socials-list list-none m-0 p-0 flex flex-row gap-5 flex-wrap">
+              <ul className="sm-socials-list list-none m-0 p-0 flex flex-row justify-end md:justify-start gap-5 flex-wrap">
                 {socialItems.map((s, i) => (
                   <li key={i}>
                     <a

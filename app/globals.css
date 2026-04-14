@@ -172,6 +172,6 @@
   background: rgba(52, 211, 153, 0.7);
 }
 
-/* ::-webkit-scrollbar{
+::-webkit-scrollbar{
   width: 0;
-} */
+}
