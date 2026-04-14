@@ -102,13 +102,13 @@ export function RouteProgressBar() {
         >
           {/* Progress bar */}
           <motion.div
-            className="h-full bg-emerald-400 rounded-r-full shadow-[0_0_10px_rgba(52,211,153,0.6)]"
+            className="h-full bg-[#C4713A] rounded-r-full shadow-[0_0_10px_rgba(196,113,58,0.6)]"
             style={{ width: `${progress}%` }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           />
           {/* Glow shimmer at the leading edge */}
           <motion.div
-            className="absolute top-0 h-full w-20 bg-linear-to-l from-emerald-300/80 to-transparent rounded-r-full shadow-emerald-500"
+            className="absolute top-0 h-full w-20 bg-gradient-to-l from-[#D4A96A]/80 to-transparent rounded-r-full shadow-md shadow-[#C4713A]/50"
             style={{ left: `${Math.max(0, progress - 8)}%` }}
           />
         </motion.div>
