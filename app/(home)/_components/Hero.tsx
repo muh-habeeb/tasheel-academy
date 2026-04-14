@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
 import LaserFlow from "./LaserFlow";
+import BorderGlow from "@/components/BorderGlow";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] lg:h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-dvh lg:h-screen w-full flex items-center justify-center overflow-hidden bg-black"
     >
       {/* Background Image with optimized Next/Image */}
       <div
@@ -47,8 +48,8 @@ export function Hero() {
           sizes="100vw"
         />
         {/* Dark elegant overlay */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-black/80 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-black/50 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-black/20" />
 
         {/* Full section Noise Texture — custom specular lighting */}
         <div
@@ -61,41 +62,30 @@ export function Hero() {
       </div>
 
       {/* LaserFlow as full background layer (Isolated from GSAP animations) */}
-      <div className="absolute inset-0 z-1 mix-blend-screen pointer-events-auto">
+      <div className="absolute inset-0 z-10 pointer-events-auto">
         <LaserFlow
           style={{ height: "100%", width: "100%" }}
           horizontalBeamOffset={0.0}
           verticalBeamOffset={-0.50}
           color="#00d492"
-          // horizontalSizing={2}
-          // verticalSizing={2.4}
-          // wispDensity={0.8}
-          // wispSpeed={9}
-          // wispIntensity={20}
-          // flowSpeed={0.24}
-          // flowStrength={0.13}
-          // fogIntensity={0.36}
-          // fogScale={0.25}
-          // fogFallSpeed={0.34}
-          // decay={1.25}
-          // falloffStart={1.33}
           horizontalSizing={2}
-          verticalSizing={3.8}
-          wispDensity={0.9}
-          wispSpeed={11}
-          wispIntensity={6.8}
-          flowSpeed={0.43}
-          flowStrength={0.14}
+          verticalSizing={12}
+          wispDensity={2}
+          wispSpeed={3}
+          wispIntensity={9.8}
+          flowSpeed={0.11}
+          flowStrength={0.9}
           fogIntensity={0.97}
           fogScale={0.1}
-          fogFallSpeed={0.14}
+          fogFallSpeed={0.1}
           decay={1.64}
           falloffStart={1.2}
+          mouseSmoothTime={0.1}
         />
       </div>
 
       {/* Content wrapper */}
-      <div className="relative z-2 container mx-auto px-6 lg:px-12 pt-16 pb-20 lg:py-0 w-full min-h-[100dvh] lg:h-full flex flex-col justify-center pointer-events-none">
+      <div className="relative z-2 container mx-auto px-6 lg:px-12 pt-16 pb-20 lg:py-0 w-full min-h-dvh lg:h-full flex flex-col justify-center pointer-events-none">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* Left Side text content */}
@@ -161,13 +151,27 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 2.2, ease: [0.23, 1, 0.32, 1] }}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center pointer-events-auto"
             >
-              <Button className="px-8 py-6 rounded-full bg-emerald-500 text-white font-medium hover:bg-emerald-400 pointer-events-auto cursor-pointer shadow-[0_0_40px_rgba(52,211,153,0.3)] hover:shadow-[0_0_60px_rgba(52,211,153,0.5)] text-base active:scale-[0.97] transition-all duration-150 ease-out">
-                Start Your Journey
-              </Button>
+              <BorderGlow
+                edgeSensitivity={10}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={50}
+                glowRadius={37}
+                glowIntensity={1.6}
+                coneSpread={7}
+                animated
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+              >
+                <Button
+                  className="w-full h-full sm:w-auto px-8 py-4 rounded-full text-white font-bold text-base  transition-all duration-200 ease-out cursor-pointer border-0 bg-transparent"
+                >
+                  Start Your Journey
+                </Button>
+              </BorderGlow>
 
-              <Button variant="outline" className="px-8 py-6 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 border-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm pointer-events-auto cursor-pointer text-base active:scale-[0.97] transition-all duration-150 ease-out">
+              <Button variant="outline" className="px-8 py-6 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 border-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm cursor-pointer text-base active:scale-[0.97] transition-all duration-150 ease-out">
                 Explore Courses
               </Button>
             </motion.div>

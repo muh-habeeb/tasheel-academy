@@ -168,35 +168,48 @@ export function Cources() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      // Force a tiny delay so DOM and images process before calculating widths
-      setTimeout(() => {
-        const getScrollAmount = () => {
-          const containerWidth = containerRef.current?.scrollWidth || window.innerWidth;
-          return -(containerWidth - window.innerWidth + window.innerWidth * 0.1); 
-        };
+    gsap.set(containerRef.current, { x: 0, clearProps: "x" });
 
-        const tween = gsap.to(containerRef.current, {
-          x: () => getScrollAmount(),
-          ease: "none"
-        });
+    // Capture stable ref for use in cleanup
+    const container = containerRef.current;
+    let rafId: number;
+    let st: ReturnType<typeof ScrollTrigger.create> | null = null;
+    let tween: gsap.core.Tween | null = null;
 
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: () => "+=" + Math.abs(getScrollAmount()),
-          pin: true,
-          animation: tween,
-          scrub: 1, 
-          invalidateOnRefresh: true,
-        });
+    const setup = () => {
+      if (!sectionRef.current || !containerRef.current) return;
 
-        ScrollTrigger.refresh();
-      }, 100);
-    }, sectionRef);
+      const getScrollAmount = () => {
+        const cw = containerRef.current?.scrollWidth || window.innerWidth;
+        return -(cw - window.innerWidth + window.innerWidth * 0.1);
+      };
 
-    return () => ctx.revert();
+      tween = gsap.to(containerRef.current, { x: () => getScrollAmount(), ease: "none" });
+
+      st = ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: () => "+=" + Math.abs(getScrollAmount()),
+        pin: true,
+        animation: tween,
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+      });
+
+      ScrollTrigger.refresh();
+    };
+
+    // 2 RAF frames ensure layout paint is complete and refs are populated
+    rafId = requestAnimationFrame(() => { rafId = requestAnimationFrame(setup); });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      st?.kill();
+      tween?.kill();
+      gsap.set(container, { x: 0, clearProps: "x" });
+    };
   }, []);
+
 
   return (
     <div id="courses" className="w-full relative">

@@ -108,7 +108,7 @@ export function RouteProgressBar() {
           />
           {/* Glow shimmer at the leading edge */}
           <motion.div
-            className="absolute top-0 h-full w-20 bg-linear-to-l from-emerald-300/80 to-transparent rounded-r-full"
+            className="absolute top-0 h-full w-20 bg-linear-to-l from-emerald-300/80 to-transparent rounded-r-full shadow-emerald-500"
             style={{ left: `${Math.max(0, progress - 8)}%` }}
           />
         </motion.div>

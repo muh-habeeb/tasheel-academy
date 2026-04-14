@@ -300,6 +300,7 @@ export const LaserFlow: React.FC<Props> = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const uniformsRef = useRef<Record<string, { value: any }> | null>(null);
   const hasFadedRef = useRef(false);
+  const fadeValueRef = useRef(0);
   const rectRef = useRef<DOMRect | null>(null);
   const baseDprRef = useRef<number>(1);
   const currentDprRef = useRef<number>(1);
@@ -309,6 +310,7 @@ export const LaserFlow: React.FC<Props> = ({
   const emaDtRef = useRef<number>(16.7);
   const pausedRef = useRef<boolean>(false);
   const inViewRef = useRef<boolean>(true);
+  const mountRetryRef = useRef<number>(0);
 
   const mouseSmoothTimeRef = useRef(mouseSmoothTime);
   useEffect(() => {
@@ -319,11 +321,11 @@ export const LaserFlow: React.FC<Props> = ({
     const mount = mountRef.current!;
     const renderer = new THREE.WebGLRenderer({
       antialias: false,
-      alpha: false,
+      alpha: true,
       depth: false,
       stencil: false,
       powerPreference: 'high-performance',
-      premultipliedAlpha: false,
+      premultipliedAlpha: true,
       preserveDrawingBuffer: false,
       failIfMajorPerformanceCaveat: false,
       logarithmicDepthBuffer: false
@@ -336,7 +338,7 @@ export const LaserFlow: React.FC<Props> = ({
     renderer.setPixelRatio(currentDprRef.current);
     renderer.shadowMap.enabled = false;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.setClearColor(0x000000, 1);
+    renderer.setClearColor(0x000000, 0);
     const canvas = renderer.domElement;
     canvas.style.width = '100%';
     canvas.style.height = '100%';
@@ -371,15 +373,16 @@ export const LaserFlow: React.FC<Props> = ({
       uFalloffStart: { value: falloffStart },
       uFogFallSpeed: { value: fogFallSpeed },
       uColor: { value: new THREE.Vector3(1, 1, 1) },
-      uFade: { value: hasFadedRef.current ? 1 : 0 }
+      uFade: { value: 0 }
     };
     uniformsRef.current = uniforms;
+    fadeValueRef.current = 0;
 
     const material = new THREE.RawShaderMaterial({
       vertexShader: VERT,
       fragmentShader: FRAG,
       uniforms,
-      transparent: false,
+      transparent: true,
       depthTest: false,
       depthWrite: false,
       blending: THREE.NormalBlending
@@ -391,7 +394,6 @@ export const LaserFlow: React.FC<Props> = ({
 
     const startTime = performance.now();
     let prevTime = startTime;
-    let fade = hasFadedRef.current ? 1 : 0;
 
     const mouseTarget = new THREE.Vector2(0, 0);
     const mouseSmooth = new THREE.Vector2(0, 0);
@@ -506,9 +508,11 @@ export const LaserFlow: React.FC<Props> = ({
       lastFpsCheckRef.current = now;
     };
 
+    const mountTime = performance.now();
+
     const animate = () => {
       raf = requestAnimationFrame(animate);
-      if (pausedRef.current || !inViewRef.current) return;
+      if (pausedRef.current) return; // Removed inView check temporarily for navigation robustness
 
       const now = performance.now();
       const t = (now - startTime) / 1000;
@@ -522,15 +526,23 @@ export const LaserFlow: React.FC<Props> = ({
 
       uniforms.iTime.value = t;
 
+      // Ensure size is captured post-navigation if initially 0
+      if (lastSizeRef.current.width <= 1 && performance.now() - mountTime < 2000) {
+        if (mountRetryRef.current % 10 === 0) {
+          setSizeNow();
+        }
+        mountRetryRef.current++;
+      }
+
       const cdt = Math.min(0.033, Math.max(0.001, dt));
       (uniforms.uFlowTime.value as number) += cdt;
       (uniforms.uFogTime.value as number) += cdt;
 
       if (!hasFadedRef.current) {
-        const fadeDur = 1.0;
-        fade = Math.min(1, fade + cdt / fadeDur);
-        uniforms.uFade.value = fade;
-        if (fade >= 1) hasFadedRef.current = true;
+        const fadeDur = 0.8; // Faster fade in on return
+        fadeValueRef.current = Math.min(1, fadeValueRef.current + cdt / fadeDur);
+        uniforms.uFade.value = fadeValueRef.current;
+        if (fadeValueRef.current >= 1) hasFadedRef.current = true;
       }
 
       const tau = Math.max(1e-3, mouseSmoothTimeRef.current);
@@ -563,7 +575,6 @@ export const LaserFlow: React.FC<Props> = ({
       geometry.dispose();
       material.dispose();
       renderer.dispose();
-      renderer.forceContextLoss();
       if (mount.contains(canvas)) mount.removeChild(canvas);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
