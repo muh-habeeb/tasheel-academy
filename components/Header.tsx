@@ -42,19 +42,19 @@ export function Header() {
         NOISE BACKGROUND (ACTIVE) 
         This adds a premium grainy texture to the header background.
       */}
-      <div 
-        // className="absolute inset-0 pointer-events-none bg-[#F7F4EF] opacity-90"
-        // style={{
-        //   backgroundImage: `url("/assets/bgs/stock/nois.jpeg")`,
-        // }}
+      <div
+      // className="absolute inset-0 pointer-events-none bg-[#F7F4EF] opacity-90"
+      // style={{
+      //   backgroundImage: `url("/assets/bgs/stock/nois.jpeg")`,
+      // }}
       ></div>
 
-      
-        {/* BACKDROP BLUR BACKGROUND (COMMENTED OUT) 
+
+      {/* BACKDROP BLUR BACKGROUND (COMMENTED OUT) 
         Toggle this if you prefer a smooth frosted-glass look.
          */}
-        <div className="absolute inset-0 pointer-events-none bg-[#F7F4EF]/70 backdrop-blur-md"></div>
-     
+      <div className="absolute inset-0 pointer-events-none bg-[#F7F4EF]/70 backdrop-blur-md"></div>
+
 
       <div className="relative max-w-6xl w-full mx-auto px-6 h-16 flex items-center justify-between">
         {/* LOGO */}
