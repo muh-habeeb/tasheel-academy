@@ -30,7 +30,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
   const y4s = useTransform(scrollYProgress, [0, 0.80, 0.85, 0.96, 1], [40, 40, 0, 0, -40]);
 
   return (
-    <div className="absolute inset-0 pointer-events-none h-screen ">
+    <div className="absolute inset-0 pointer-events-none h-screen  ">
 
       {/* 
         ========================================================
@@ -38,7 +38,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
         ========================================================
       */}
       <motion.div
-        className="absolute inset-0 flex  flex-col justify-end items-center pb-24 md:pb-32 px-6 overflow-hidden"
+        className="absolute inset-0 flex flex-col justify-center md:justify-end items-center pb-0 md:pb-32 px-4 md:px-6 overflow-hidden"
         style={{ opacity: o1s, y: y1s }}
       >
         <div
@@ -46,22 +46,22 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
           style={{ background: "linear-gradient(to top, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.60) 60%, transparent 100%)" }}
         />
 
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto z-10 pointer-events-auto mt-auto">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto z-10 pointer-events-auto md:mt-auto">
           <Image
             src="/assets/logo.png"
             alt="TasHeel Moral Academy"
             width={160}
             height={64}
-            className="mb-8 w-auto h-12 md:h-16 invert brightness-0"
+            className="mb-4 md:mb-8 w-auto h-10 md:h-16 invert brightness-0"
             style={{ width: "auto", height: "auto" }}
           />
 
-          <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#C4713A] border border-[#C4713A]/30 bg-[#C4713A]/10 px-4 py-2 rounded-full mb-6 font-sans">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C4713A] animate-pulse" />
+          <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#FFD97D] border border-[#FFD97D]/60 bg-[#FFD97D]/15 px-4 py-1.5 rounded-full mb-3 md:mb-6 font-sans">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FFD97D] animate-pulse" />
             Admissions Open • 2026
           </span>
 
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F7F4EF] leading-[1.1] mb-6">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F7F4EF] leading-[1.1] mb-3 md:mb-6">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4713A] via-[#D4A96A] to-[#C4713A]">
               Learn Quran.
             </span>
@@ -71,20 +71,13 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
             Live Islam.
           </h1>
 
-          <p className="font-body text-lg md:text-xl text-[#F7F4EF]/80 max-w-2xl font-light leading-relaxed">
+          <p className="font-body text-sm md:text-xl text-[#F7F4EF]/80 max-w-2xl font-light leading-relaxed">
             A transformative Islamic education —<br className="hidden md:block" /> from anywhere in the world.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-6 mt-12">
+          <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-6 mt-5 md:mt-12">
             <BorderGlow
-              // glowColor="24 54 50" // Copper hue to match the theme
-              // backgroundColor="rgba(28, 37, 68, 0.5)" // Deep Navy with transparency
-              // borderRadius={9999}
-              // glowIntensity={0.8}
-              // animated={true}
-              // className="w-full sm:w-auto"
-              // colors={['#C4713A', '#D4A96A', '#3D4F7C']}
               edgeSensitivity={14}
               glowColor="40 80 80"
               backgroundColor="#120F17"

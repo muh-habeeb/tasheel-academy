@@ -11,25 +11,39 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let lastY = window.scrollY;
+    let hidden = false;
+
     const onScroll = () => {
-      if (window.scrollY > 50) {
+      const currentY = window.scrollY;
+      const delta = currentY - lastY;
+
+      // Scrolling DOWN — hide header
+      if (delta > 4 && !hidden && currentY > 80) {
+        hidden = true;
         gsap.to(headerRef.current, {
-          y: -5,
-          opacity: 0.95,
-          duration: 0.3,
-          ease: "power2.out",
+          yPercent: -160,
+          duration: 0.4,
+          ease: "power3.in",
         });
-      } else {
-        gsap.to(headerRef.current, {
-          y: 0,
-          opacity: 1,
-          duration: 0.3,
-          ease: "power2.out",
-        });
+        window.dispatchEvent(new CustomEvent("header-hide", { detail: { duration: 0.4 } }));
       }
+
+      // Scrolling UP — reveal header
+      if (delta < -4 && hidden) {
+        hidden = false;
+        gsap.to(headerRef.current, {
+          yPercent: 0,
+          duration: 0.45,
+          ease: "power3.out",
+        });
+        window.dispatchEvent(new CustomEvent("header-show", { detail: { duration: 0.45 } }));
+      }
+
+      lastY = currentY;
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -53,7 +67,7 @@ export function Header() {
       {/* BACKDROP BLUR BACKGROUND (COMMENTED OUT) 
         Toggle this if you prefer a smooth frosted-glass look.
          */}
-      <div className="absolute inset-0 pointer-events-none bg-[#F7F4EF]/70 backdrop-blur-md"></div>
+      <div className="absolute inset-0 pointer-events-none bg-[#F7F4EF]/70"></div>
 
 
       <div className="relative max-w-6xl w-full mx-auto px-6 h-16 flex items-center justify-between">

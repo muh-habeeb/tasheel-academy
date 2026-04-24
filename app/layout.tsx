@@ -57,7 +57,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#F7F4EF] text-[#1C2544] selection:bg-[#C4713A]/30 font-sans" suppressHydrationWarning>
         <SmoothScroll>
-          <Preloader />
+          {/* <Preloader /> */}
           <Header />
           <MobileNav />
           <main className="flex-1 flex flex-col mt-[80px] md:mt-0 relative" style={{ position: 'relative' }}>

@@ -192,7 +192,7 @@ export function Cources() {
         end: () => "+=" + Math.abs(getScrollAmount()),
         pin: true,
         animation: tween,
-        scrub: 0.5,
+        scrub: 0.1,
         invalidateOnRefresh: true,
       });
 

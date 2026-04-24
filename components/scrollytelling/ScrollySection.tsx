@@ -28,7 +28,7 @@ export function ScrollySection({
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full bg-[#F5F2EC]"
+      className="relative w-full bg-[#F5F2EC] -mt-[80px] md:mt-0"
       style={{ height: scrollHeight, position: "relative" }}
       suppressHydrationWarning
     >

@@ -39,6 +39,7 @@ export function MobileNav() {
   const iconRef     = useRef<HTMLSpanElement>(null);
   const textInnerRef= useRef<HTMLSpanElement>(null);
   const toggleBtnRef= useRef<HTMLButtonElement>(null);
+  const btnWrapperRef = useRef<HTMLDivElement>(null);
   const busyRef     = useRef(false);
 
   const openTlRef        = useRef<gsap.core.Timeline | null>(null);
@@ -202,6 +203,37 @@ export function MobileNav() {
     return () => document.removeEventListener('mousedown', onDown);
   }, [open, handleClose]);
 
+  /* ── Sync menu button with header hide/show ── */
+  useEffect(() => {
+    const handleHide = (e: Event) => {
+      const { duration } = (e as CustomEvent).detail ?? { duration: 0.4 };
+      if (!open) {
+        gsap.to(btnWrapperRef.current, {
+          yPercent: -160,
+          duration,
+          ease: "power3.in",
+          overwrite: "auto",
+        });
+      }
+    };
+    const handleShow = (e: Event) => {
+      const { duration } = (e as CustomEvent).detail ?? { duration: 0.45 };
+      gsap.to(btnWrapperRef.current, {
+        yPercent: 0,
+        duration,
+        ease: "power3.out",
+        overwrite: "auto",
+      });
+    };
+
+    window.addEventListener("header-hide", handleHide);
+    window.addEventListener("header-show", handleShow);
+    return () => {
+      window.removeEventListener("header-hide", handleHide);
+      window.removeEventListener("header-show", handleShow);
+    };
+  }, [open]);
+
   return (
     /* Global nav — visible on all screens */
     <div className="sm-scope fixed top-0 left-0 w-screen h-screen pointer-events-none z-50" suppressHydrationWarning>
@@ -211,7 +243,7 @@ export function MobileNav() {
         suppressHydrationWarning
       >
         {/* ── Toggle button wrapper (Aligns with Header) ── */}
-        <div className="fixed top-[30px] left-1/2 -translate-x-1/2 w-[85%] z-[999] pointer-events-none" suppressHydrationWarning>
+        <div ref={btnWrapperRef} className="fixed top-[30px] left-1/2 -translate-x-1/2 w-[85%] z-[999] pointer-events-none" suppressHydrationWarning>
           <div className="relative max-w-6xl w-full mx-auto px-6 h-16 flex items-center justify-end" suppressHydrationWarning>
             <button
               ref={toggleBtnRef}
