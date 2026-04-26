@@ -20,8 +20,6 @@ export function ScrollySection({
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // We start when the top of the container hits the top of the viewport
-    // and end when the bottom of the container hits the bottom of the viewport
     offset: ["start start", "end end"],
   });
 
