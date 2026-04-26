@@ -43,24 +43,24 @@ function getSection(p: number): number {
 
 const variants = {
   s1: {
-    initial: { opacity: 1 },                                // visible on load
+    initial: { opacity: 1 },
     animate: { opacity: 1 },
-    exit:    { opacity: 0, y: -30, filter: "blur(6px)", transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] } },
+    exit:    { opacity: 0, y: -30, filter: "blur(6px)", transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] as const } },
   },
   s2: {
     initial: { opacity: 0, x: -60 },
-    animate: { opacity: 1, x: 0,   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-    exit:    { opacity: 0, x: -60,  transition: { duration: 0.35, ease: [0.4, 0, 1, 1] } },
+    animate: { opacity: 1, x: 0,   transition: { duration: 0.5,  ease: [0.22, 1, 0.36, 1] as const } },
+    exit:    { opacity: 0, x: -60,  transition: { duration: 0.35, ease: [0.4,  0, 1,    1] as const } },
   },
   s3: {
     initial: { opacity: 0, x: 60 },
-    animate: { opacity: 1, x: 0,   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-    exit:    { opacity: 0, x: 60,   transition: { duration: 0.35, ease: [0.4, 0, 1, 1] } },
+    animate: { opacity: 1, x: 0,   transition: { duration: 0.5,  ease: [0.22, 1, 0.36, 1] as const } },
+    exit:    { opacity: 0, x: 60,   transition: { duration: 0.35, ease: [0.4,  0, 1,    1] as const } },
   },
   s4: {
     initial: { opacity: 0, y: 40 },
-    animate: { opacity: 1, y: 0,   transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-    exit:    { opacity: 0, y: -20,  transition: { duration: 0.35, ease: [0.4, 0, 1, 1] } },
+    animate: { opacity: 1, y: 0,   transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const } },
+    exit:    { opacity: 0, y: -20,  transition: { duration: 0.35, ease: [0.4,  0, 1,    1] as const } },
   },
 };
 
@@ -109,6 +109,8 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
                   src="/assets/logo.png"
                   alt="TasHeel Moral Academy"
                   width={160} height={64}
+                  priority
+                  loading="eager"
                   className="mb-4 md:mb-8 w-auto h-10 md:h-16 invert brightness-0"
                   style={{ width: "auto", height: "auto" }}
                 />
@@ -189,7 +191,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
               style={{ background: "linear-gradient(to right, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
             />
             <div className="max-w-xl z-10 pointer-events-auto">
-              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#C4713A] border border-[#C4713A]/30 bg-[#C4713A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">
+              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#F5C97A] border border-[#F5C97A]/40 bg-[#F5C97A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">
                 Expert Instructors
               </span>
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#F7F4EF] leading-[1.1] mb-4 md:mb-6">
@@ -219,7 +221,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
               style={{ background: "linear-gradient(to left, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
             />
             <div className="max-w-xl z-10 pointer-events-auto text-left md:text-right flex flex-col md:items-end">
-              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#C4713A] border border-[#C4713A]/30 bg-[#C4713A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">
+              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#F5C97A] border border-[#F5C97A]/40 bg-[#F5C97A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">
                 Global Community
               </span>
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#F7F4EF] leading-[1.1] mb-4 md:mb-6">
@@ -249,8 +251,8 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
               style={{ background: "linear-gradient(to right, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
             />
             <div className="max-w-xl z-10 pointer-events-auto">
-              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#C4713A] border border-[#C4713A]/30 bg-[#C4713A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C4713A] animate-pulse" />
+              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#F5C97A] border border-[#F5C97A]/40 bg-[#F5C97A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5C97A] animate-pulse" />
                 Start Today
               </span>
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#F7F4EF] leading-[1.1] mb-4 md:mb-6">

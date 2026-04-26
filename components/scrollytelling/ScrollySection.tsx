@@ -27,10 +27,10 @@ export function ScrollySection({
     <section 
       ref={containerRef} 
       className="relative w-full bg-[#F5F2EC] -mt-[80px] md:mt-0"
-      style={{ height: scrollHeight, position: "relative" }}
+      style={{ height: scrollHeight }}
       suppressHydrationWarning
     >
-      <div className="sticky top-0 w-full h-screen overflow-hidden">
+      <div className="sticky top-0 w-full h-screen overflow-hidden" suppressHydrationWarning>
         <ScrollyCanvas 
           scrollYProgress={scrollYProgress} 
           totalFrames={totalFrames} 
