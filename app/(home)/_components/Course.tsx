@@ -213,15 +213,15 @@ export function Cources() {
 
   return (
     <div id="courses" className="w-full relative">
-      <section ref={sectionRef} className="relative w-full h-screen bg-[#F7F4EF] overflow-hidden border-t border-[#2B3A6B]/5 flex flex-col justify-center ">
-        <div className="mt-28">
+      <section ref={sectionRef} className="relative w-full h-[110svh] md:h-screen bg-[#F7F4EF] overflow-hidden border-t border-[#2B3A6B]/5 flex flex-col justify-center mt-8 md:mt-0 pt-12 md:pt-0">
+        <div className="mt-32 md:mt-28">
 
           {/* Big Background Animation / Box Shadow Element */}
           <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[70%] rounded-full bg-[#D4A96A]/20 blur-[140px] pointer-events-none" />
           <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-[#C4713A]/10 blur-[130px] pointer-events-none" />
 
           {/* Banner images added to Top-Left and Bottom-Left */}
-          <div className="absolute top-12 -left-8 md:left-12  pointer-events-none ">
+          <div className="absolute top-4 md:top-12 -left-16 md:left-12 pointer-events-none opacity-20 md:opacity-100 scale-75 md:scale-100 origin-top-left">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/assets/bgs/banner2.png" alt="" className="w-[200px] md:w-[180px] -rotate-12 object-cover" />
           </div>
@@ -230,7 +230,7 @@ export function Cources() {
             <img src="/assets/bgs/banner2.png" alt="" className="w-[200px] md:w-[180px] rotate-12 object-cover" />
           </div>
 
-          <div className="flex flex-col mt-32 lg:mt-0">
+          <div className="flex flex-col mt-40 md:mt-32 lg:mt-0">
             <div className="container mx-auto px-6 relative z-10 mb-8 shrink-0">
               <div className="text-center md:text-left max-w-3xl">
                 <h2 className="font-display text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-[#1C2544] mb-6">

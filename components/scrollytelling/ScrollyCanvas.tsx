@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MotionValue, useMotionValueEvent, useTransform } from "framer-motion";
+import { MotionValue, useMotionValueEvent, useTransform, useSpring } from "framer-motion";
 
 interface ScrollyCanvasProps {
   scrollYProgress: MotionValue<number>;
@@ -20,14 +20,16 @@ export function ScrollyCanvas({
   const [loadProgress, setLoadProgress] = useState(0);
   const [showHint, setShowHint] = useState(true);
 
-  // ─── CRITICAL: animation ends at 0.97 — exactly when S4 peaks ────────────
-  // This means:
-  //   • 0%  → first frame  (S1 visible)
-  //   • 90% → ~93% through frames  (S4 fading in)
-  //   • 97% → last frame  (S4 at full opacity — perfect sync)
-  // No frozen-image dead zone at all.
+  // ─── ADDED SPRING FOR FLUIDITY ──────────────────────────────────────────
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 700,
+    damping: 90,
+    mass: 1,
+    restDelta: 0.0001
+  });
+
   const frameIndex = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [0, 0.97],
     [0, totalFrames - 1],
     { clamp: true }

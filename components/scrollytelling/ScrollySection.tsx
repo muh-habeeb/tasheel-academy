@@ -26,11 +26,15 @@ export function ScrollySection({
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full bg-[#F5F2EC] -mt-[80px] md:mt-0"
-      style={{ height: scrollHeight }}
+      className="relative w-full bg-[#F5F2EC] -mt-[80px] md:mt-0 h-[var(--scroll-height-mobile)] md:h-[var(--scroll-height-desktop)]"
+      style={{ 
+        // @ts-ignore
+        "--scroll-height-mobile": "500svh",
+        "--scroll-height-desktop": scrollHeight 
+      } as React.CSSProperties}
       suppressHydrationWarning
     >
-      <div className="sticky top-0 w-full h-screen overflow-hidden" suppressHydrationWarning>
+      <div className="sticky top-0 w-full h-[100svh] overflow-hidden" suppressHydrationWarning>
         <ScrollyCanvas 
           scrollYProgress={scrollYProgress} 
           totalFrames={totalFrames} 

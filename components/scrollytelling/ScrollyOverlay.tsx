@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -41,40 +41,50 @@ function getSection(p: number): number {
 // S3 — slides in from RIGHT, out to RIGHT
 // S4 — rises from BELOW,     fades out upward (end of journey)
 
-const variants = {
-  s1: {
-    initial: { opacity: 1 },
-    animate: { opacity: 1 },
-    exit:    { opacity: 0, y: -30, filter: "blur(6px)", transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] as const } },
-  },
-  s2: {
-    initial: { opacity: 0, x: -60 },
-    animate: { opacity: 1, x: 0,   transition: { duration: 0.5,  ease: [0.22, 1, 0.36, 1] as const } },
-    exit:    { opacity: 0, x: -60,  transition: { duration: 0.35, ease: [0.4,  0, 1,    1] as const } },
-  },
-  s3: {
-    initial: { opacity: 0, x: 60 },
-    animate: { opacity: 1, x: 0,   transition: { duration: 0.5,  ease: [0.22, 1, 0.36, 1] as const } },
-    exit:    { opacity: 0, x: 60,   transition: { duration: 0.35, ease: [0.4,  0, 1,    1] as const } },
-  },
-  s4: {
-    initial: { opacity: 0, y: 40 },
-    animate: { opacity: 1, y: 0,   transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const } },
-    exit:    { opacity: 0, y: -20,  transition: { duration: 0.35, ease: [0.4,  0, 1,    1] as const } },
-  },
-};
-
 // Shared GPU hint for gradient text — prevents bg-clip-text flicker
 const gpu: React.CSSProperties = { WebkitTransform: "translateZ(0)", transform: "translateZ(0)" };
 
 export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
   const [section, setSection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Watch scroll progress and switch section index at clean 25% boundaries
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const next = getSection(latest);
     if (next !== section) setSection(next);
   });
+
+  const speedMultiplier = isMobile ? 0.7 : 1;
+
+  const variants = {
+    s1: {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 },
+      exit:    { opacity: 0, y: -30, filter: "blur(6px)", transition: { duration: 0.45 * speedMultiplier, ease: [0.4, 0, 0.2, 1] as const } },
+    },
+    s2: {
+      initial: { opacity: 0, x: -60 },
+      animate: { opacity: 1, x: 0,   transition: { duration: 0.5 * speedMultiplier,  ease: [0.22, 1, 0.36, 1] as const } },
+      exit:    { opacity: 0, x: -60,  transition: { duration: 0.35 * speedMultiplier, ease: [0.4,  0, 1,    1] as const } },
+    },
+    s3: {
+      initial: { opacity: 0, x: 60 },
+      animate: { opacity: 1, x: 0,   transition: { duration: 0.5 * speedMultiplier,  ease: [0.22, 1, 0.36, 1] as const } },
+      exit:    { opacity: 0, x: 60,   transition: { duration: 0.35 * speedMultiplier, ease: [0.4,  0, 1,    1] as const } },
+    },
+    s4: {
+      initial: { opacity: 0, y: 40 },
+      animate: { opacity: 1, y: 0,   transition: { duration: 0.55 * speedMultiplier, ease: [0.22, 1, 0.36, 1] as const } },
+      exit:    { opacity: 0, y: -20,  transition: { duration: 0.35 * speedMultiplier, ease: [0.4,  0, 1,    1] as const } },
+    },
+  };
 
   return (
     <div className="absolute inset-0 pointer-events-none h-screen overflow-hidden">
@@ -218,7 +228,7 @@ export function ScrollyOverlay({ scrollYProgress }: ScrollyOverlayProps) {
           >
             <div
               className="absolute right-0 inset-y-0 w-full md:w-[65%] -z-10 pointer-events-none"
-              style={{ background: "linear-gradient(to left, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 60%, transparent 100%)" }}
+              style={{ background: "linear-gradient(to left top, rgba(18,24,43,0.95) 0%, rgba(18,24,43,0.65) 40%,transparent 100%)" }}
             />
             <div className="max-w-xl z-10 pointer-events-auto text-left md:text-right flex flex-col md:items-end">
               <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-[#F5C97A] border border-[#F5C97A]/40 bg-[#F5C97A]/10 px-4 py-2 rounded-full mb-4 md:mb-6 font-sans">

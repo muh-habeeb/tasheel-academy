@@ -11,13 +11,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     }
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.2,   // snappier desktop wheel
-      touchMultiplier: 1.2,   // controlled mobile swipe
+      wheelMultiplier: 1.2,
+      touchMultiplier: 2.4,   // Fast and responsive swipe
+      lerp: 0.1,             // Snappy interpolation
     });
 
     let rafId: number;
